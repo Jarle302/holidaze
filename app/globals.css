@@ -31,3 +31,12 @@ body {
     text-wrap: balance;
   }
 }
+
+.background--landing--left {
+  background-image: url(/leftbg.png);
+  background-size: cover;
+}
+.background--landing--right {
+  background-image: url(/rightbg.png);
+  background-size: cover;
+}
