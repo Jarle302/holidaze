@@ -19,10 +19,10 @@ export default function Home() {
         <div className="background--landing--right flex-1 h-full flex items-end justify-center p-2">
           <div className="bg-yellow-800 max-w-[400px] p-5 ">
             <p className="">
-              Whether you're looking for the rustic charm of a mountain lodge or
-              the serene beauty of a beachfront villa, our diverse collection
-              has something for every taste and occasion. Let your journey begin
-              here
+              Whether you`&apos;`re looking for the rustic charm of a mountain
+              lodge or the serene beauty of a beachfront villa, our diverse
+              collection has something for every taste and occasion. Let your
+              journey begin here
             </p>
           </div>
         </div>
@@ -42,15 +42,19 @@ export default function Home() {
         />
       </section>
       <section>
-        <div className="bg-white p-4 flex">
+        <div className="bg-white p-12 flex">
           <p>
             Unlock the full potential of your property. List with Holidaze and
             watch your bookings soar.
           </p>
-          <button className="p-2 bg-red-300">Start Hosting Toyday</button>
+          <button className="p-2 bg-red-300 rounded-md">
+            Start Hosting Toyday
+          </button>
         </div>
         <div className="bg-white p-4 flex">
-          <button className="p-2 bg-green-500">Find your adventure</button>
+          <button className="p-2 bg-green-500 rounded-md">
+            Find your adventure
+          </button>
           <p>
             Escape the ordinary. Handpicked venues for unforgettable family
             vacations are waiting for you on Holidaze.
