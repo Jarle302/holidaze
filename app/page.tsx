@@ -42,11 +42,19 @@ export default function Home() {
         />
       </section>
       <section>
-        <div>
+        <div className="bg-white p-4 flex">
           <p>
-
+            Unlock the full potential of your property. List with Holidaze and
+            watch your bookings soar.
           </p>
-          <button></button>
+          <button className="p-2 bg-red-300">Start Hosting Toyday</button>
+        </div>
+        <div className="bg-white p-4 flex">
+          <button className="p-2 bg-green-500">Find your adventure</button>
+          <p>
+            Escape the ordinary. Handpicked venues for unforgettable family
+            vacations are waiting for you on Holidaze.
+          </p>
         </div>
       </section>
     </main>
