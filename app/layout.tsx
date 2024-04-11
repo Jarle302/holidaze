@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={kadwa.className}>
+      <body className={`${kadwa.className} bg--gradient`}>
         <Header />
         {children}
       </body>
