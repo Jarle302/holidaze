@@ -41,8 +41,17 @@ body {
   background-size: cover;
 }
 
+.bg--gradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(204, 246, 254, 1) 100%
+  );
+}
 
-.bg--gradient{
-  background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(204,246,254,1) 100%);
+.bg--login {
+  background-image: url(/loginbg.png);
+  background-position: bottom;
+  background-size: cover;
 }

@@ -17,17 +17,17 @@ export const SocialProofCard: FC<SocialProofProps> = ({
 }) => {
   return (
     <div
-      className={`h-[80vh] min-h-[400px] w-[380px] ${courier.className} bg-white px-4 pt-4 pb-4`}>
+      className={`h-[470px] w-[340px] ${courier.className} bg-white px-4 pt-4 pb-4`}>
       <Image
         width={1024}
-        className="h-[70%] w-full"
+        className="h-[300px] w-full"
         height={1024}
         src={img}
         alt={alt}
       />
-      <div className="flex flex-col justify-between py-1 h-[180px]">
+      <div className="flex flex-col justify-between pt-1  h-[147px] leading-none">
         <p>{description}</p>
-        <h3 className="text-xl font-bold pb-2">{host}</h3>
+        <h3 className="text-xl font-bold">{host}</h3>
       </div>
     </div>
   );

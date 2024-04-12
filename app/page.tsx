@@ -19,7 +19,7 @@ export default function Home() {
         <div className="background--landing--right flex-1 h-full flex items-end justify-center p-2">
           <div className="bg-yellow-800 max-w-[400px] p-5 ">
             <p className="">
-              Whether you`&apos;`re looking for the rustic charm of a mountain
+              Whether you&apos;re looking for the rustic charm of a mountain
               lodge or the serene beauty of a beachfront villa, our diverse
               collection has something for every taste and occasion. Let your
               journey begin here
@@ -27,7 +27,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-[100vh] sm:flex-row flex-col flex justify-evenly">
+      <section className="h-[100vh] py-4 sm:flex-row flex-col sm:flex-wrap flex justify-evenly">
+        <h2 className="w-full text-center text-2xl text-red-300 font-bold">
+          Do like so many others!
+        </h2>
         <SocialProofCard
           img={"/socialConsumer.png"}
           alt="Family on the beach"
@@ -43,12 +46,12 @@ export default function Home() {
       </section>
       <section>
         <div className="bg-white p-12 flex">
-          <p>
+          <p className="max-w-[400px] min-w-[280px] flex-1">
             Unlock the full potential of your property. List with Holidaze and
             watch your bookings soar.
           </p>
           <button className="p-2 bg-red-300 rounded-md">
-            Start Hosting Toyday
+            Start Hosting Today
           </button>
         </div>
         <div className="bg-white p-4 flex">
