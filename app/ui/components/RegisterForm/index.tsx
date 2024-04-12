@@ -4,10 +4,14 @@ import Image from "next/image";
 
 export const RegisterForm = () => {
   return (
-    <form className="flex max-w-[800px] h-[400px] text-zinc-800 bg-white py-3">
-      <div className="w-2/5 h-full flex flex-col  justify-around p-8 items-center">
-        <div className=" border-r-1 h-[180px] w-[180px] border-red-300 ">
-          <img className="h-full w-full" src="/profilePlaceholder.png" alt="" />
+    <form className="h-full flex flex-col-reverse sm:flex-row max-w-[800px] sm:h-[400px] text-zinc-800 bg-white py-3">
+      <div className="min-h-[400px] sm:w-2/5 sm:h-full flex flex-col  justify-around p-8 items-center">
+        <div className=" border-r-1 h-[180px]  w-[180px] border-red-300 ">
+          <img
+            className="h-full w-full "
+            src="/profilePlaceholder.png"
+            alt=""
+          />
         </div>
         <AuthInput
           label="ImageUrl"
@@ -18,9 +22,9 @@ export const RegisterForm = () => {
           Register
         </button>
       </div>
-      <div className="w-3/5 px-8 border-l-2 h-full border-red-300 flex flex-col justify-between">
+      <div className="sm:w-3/5 px-8 sm:border-l-2 h-full border-red-300 flex flex-col justify-between">
         <Image
-          className="ml-auto self-start w-[80px]"
+          className="ml-auto  self-start w-[80px]"
           src="/stampLogo.webp"
           alt="Holidaze logo, in the form of a post stamp"
           height={1024}
