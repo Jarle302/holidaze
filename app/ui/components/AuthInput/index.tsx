@@ -12,7 +12,7 @@ export const AuthInput = ({
   type = "text",
 }: inputProps) => {
   return (
-    <div className="border-b-2 border-red-300 flex gap-2 items-end w-full text-white font-bold">
+    <div className="border-b-2 border-red-300 flex gap-2 items-end w-full font-bold">
       <label htmlFor={name}>
         {label[0].toUpperCase() + label.slice(1) + ":"}
       </label>
