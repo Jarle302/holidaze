@@ -13,7 +13,8 @@ export const Header: FC = () => {
           width={1024}
         />
         <ul className={"flex flex-col sm:flex-row sm:items-center "}>
-          <Link href="#">Register</Link>/<Link href="#">Login</Link>
+          <Link href="/auth/register">Register</Link>/
+          <Link href="/auth/login">Login</Link>
         </ul>
       </nav>
     </header>
