@@ -13,7 +13,7 @@ export const FloatingLabelInput = ({
   label?: string;
   type?: string;
   width?: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => void;
 }) => {
   const styling = "relative  h-[50px]   rounded-lg";
   const smallStyle = `w-[50px] ${styling}`;
