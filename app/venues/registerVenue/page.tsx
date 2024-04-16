@@ -1,4 +1,8 @@
-import { RegisterVenueForm,formPage } from "@/app/ui/components/RegisterVenueForm";
+import { RegisterVenueForm } from "@/app/ui/components/RegisterVenueForm";
 export default function RegisterVenue() {
-  return <RegisterVenueForm />;
+  return (
+    <div className="overflow-hidden">
+      <RegisterVenueForm />
+    </div>
+  );
 }

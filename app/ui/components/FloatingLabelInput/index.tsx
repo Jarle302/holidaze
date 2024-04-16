@@ -13,7 +13,9 @@ export const FloatingLabelInput = ({
   label?: string;
   type?: string;
   width?: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => void;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }) => {
   const styling = "relative  h-[50px]   rounded-lg";
   const smallStyle = `w-[50px] ${styling}`;
@@ -37,7 +39,7 @@ export const FloatingLabelInput = ({
       {type === "textArea" ? (
         <textarea
           onChange={handleChange}
-          className="outline-none h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
+          className="outline-none py-3 h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
           name={name}
           id={id}
           cols={30}

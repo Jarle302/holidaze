@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { SocialProofCard } from "./ui/components/SocialProofCard";
-
+import { AnimatedHeader } from "./ui/components/animatedHeader";
 export default function Home() {
   return (
     <main className=" flex flex-col">
       <section className="h-[100vh] flex">
         <div className="background--landing--left flex-1 h-full flex flex-col justify-evenly items-center">
+          <AnimatedHeader />
           <h1 className={"text-white text-2xl max-w-[350px] "}>
             Escape to Your Perfect Getaway with
             <span className={"text-red-300 font-bold"}> Holidaze</span>

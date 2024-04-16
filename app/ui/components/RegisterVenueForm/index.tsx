@@ -24,7 +24,39 @@ export const RegisterVenueForm = () => {
     continent: "",
     lat: 0,
     lng: 0,
+    media: [],
   });
+  function getFormData(formState: FormState) {
+    let {
+      address,
+      city,
+      zip,
+      country,
+      continent,
+      lat,
+      lng,
+      parking,
+      wifi,
+      pets,
+      breakfast,
+      url,
+      alt,
+      ...tempData
+    } = formState;
+    const formData = {
+      ...tempData,
+      location: { lat, lng, continent, city, zip, country, address },
+      meta: { wifi, breakfast, parking, pets },
+    };
+    return formData;
+  }
+  function handleClick() {
+    setFormState((prev) => ({
+      ...prev,
+      media: [...prev.media, { alt: prev.alt, url: prev.url }],
+    }));
+  }
+
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -99,17 +131,28 @@ export const RegisterVenueForm = () => {
       )}
       {formPage === 2 && (
         <div className={containerStyle}>
-          <FloatingLabelInput
-            value={formState.url}
-            handleChange={handleChange}
-            name="url"
-            label="Image url"
-          />
+          <div className="flex gap-1">
+            <FloatingLabelInput
+              value={formState.url}
+              handleChange={handleChange}
+              name="url"
+              label="Image url"
+              width="m"
+            />
+            <button
+              onClick={(e) => {
+                e.preventDefault(), handleClick();
+              }}
+              className="bg-zinc-500 text-white  p-2 rounded-lg">
+              Add
+            </button>
+          </div>
           <FloatingLabelInput
             value={formState.alt}
             handleChange={handleChange}
             name="alt"
             label="Image description"
+            type="textArea"
           />
           <div
             className={`border-2 border-zinc-500 rounded-lg max-w-max p-2 ${containerStyle}`}>
@@ -205,16 +248,22 @@ export const RegisterVenueForm = () => {
               value={formState.lng}
             />
           </div>
-
-          <button
-            className="p-2 rounded-lg bg-zinc-400 text-white"
-            onClick={(e) => {
-              setFormPage((prev) =>
-                prev > 1 ? ((prev - 1) as formPage) : prev
-              );
-            }}>
-            Back
-          </button>
+          <div className="flex">
+            <button
+              className="p-2 w-[200px] rounded-lg bg-zinc-400 text-white"
+              onClick={(e) => {
+                setFormPage((prev) =>
+                  prev > 1 ? ((prev - 1) as formPage) : prev
+                );
+              }}>
+              Back
+            </button>
+            <button
+              className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
+              onClick={() => console.log(getFormData(formState))}>
+              Register Venue
+            </button>
+          </div>
         </div>
       )}
     </form>
