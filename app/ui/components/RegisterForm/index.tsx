@@ -26,7 +26,7 @@ export const RegisterForm = () => {
     animation.current = gsap
       .timeline()
       .to(postCard.current, {
-        duration: 1,
+        duration: 0.7,
         scale: 0.2,
         ease: "slow(0.7,0.7,false)",
       })
@@ -37,6 +37,7 @@ export const RegisterForm = () => {
         rotationX: 45,
         ease: "power3.in",
       }); // <-- automatically reverted
+    animation.current.pause();
   });
 
   return (

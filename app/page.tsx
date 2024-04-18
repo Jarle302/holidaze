@@ -1,23 +1,27 @@
 import Image from "next/image";
 import { SocialProofCard } from "./ui/components/SocialProofCard";
-import { AnimatedHeader } from "./ui/components/animatedHeader";
+import { AnimatedPalm } from "./ui/components/AnimatedPalm";
 export default function Home() {
   return (
-    <main className=" flex flex-col">
-      <section className="h-[100vh] flex">
-        <div className="background--landing--left flex-1 h-full flex flex-col justify-evenly items-center">
-          <AnimatedHeader />
-          <h1 className={"text-white text-2xl max-w-[350px] "}>
-            Escape to Your Perfect Getaway with
-            <span className={"text-red-300 font-bold"}> Holidaze</span>
-          </h1>{" "}
+    <main className=" flex flex-col ">
+      <section className=" flex flex-col sm:flex-row">
+        <div className="background--landing--left flex-1 h-full flex flex-col  justify-evenly pt-[220px]   items-center min-h-[100vh]">
+          <div className="relative">
+            <AnimatedPalm
+              className={"absolute w-[102px] left-[71%] top-[-71px]"}
+            />
+            <h1 className={"text-white text-2xl max-w-[350px] "}>
+              Escape to Your Perfect Getaway with
+              <span className={"text-red-300 font-bold"}> Holidaze</span>
+            </h1>{" "}
+          </div>
           <search className="flex w-[300px]  rounded-full bg-white  ">
             <input className="rounded-full" type="text" />
             <button className="p-2 bg-yellow-800 rounded-bl-xl">filter</button>
             <button className="p-2 bg-red-300 rounded-r-full">search</button>
           </search>
         </div>
-        <div className="background--landing--right flex-1 h-full flex items-end justify-center p-2">
+        <div className="background--landing--right flex-1 h-full flex items-end justify-center min-h-[100vh]">
           <div className="bg-yellow-800 max-w-[400px] p-5 ">
             <p className="">
               Whether you&apos;re looking for the rustic charm of a mountain
