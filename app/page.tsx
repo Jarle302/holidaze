@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-[100vh] py-4 sm:flex-row flex-col sm:flex-wrap flex justify-evenly flex-1">
+      <section className="h-[100vh] py-4 sm:flex-row flex-col sm:flex-wrap flex gap-4 items-center justify-evenly flex-1">
         <h2 className="w-full text-center text-2xl text-red-300 font-bold">
           Do like so many others!
         </h2>
@@ -51,7 +51,7 @@ export default function Home() {
       </section>
       <section className="flex-1">
         <div className="bg-white p-12 flex">
-          <p className="max-w-[400px] min-w-[280px] flex-1">
+          <p className="max-w-[400px] min-w-[250px] flex-1">
             Unlock the full potential of your property. List with Holidaze and
             watch your bookings soar.
           </p>
