@@ -15,8 +15,8 @@ export default function Home() {
               <span className={"text-red-300 font-bold"}> Holidaze</span>
             </h1>{" "}
           </div>
-          <search className="flex w-[250px]  rounded-full bg-white  ">
-            <input className="rounded-full" type="text" />
+          <search className="flex w-[280px]  rounded-full bg-white  ">
+            <input className="rounded-full w-full" type="text" />
             <button className="p-2 bg-yellow-800 rounded-bl-xl">filter</button>
             <button className="p-2 bg-red-300 rounded-r-full">search</button>
           </search>
