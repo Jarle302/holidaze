@@ -4,7 +4,7 @@ import { AnimatedPalm } from "./ui/components/AnimatedPalm";
 export default function Home() {
   return (
     <main className=" flex flex-col ">
-      <section className=" flex flex-col sm:flex-row">
+      <section className=" flex flex-col sm:flex-row flex-1">
         <div className="background--landing--left flex-1 h-full flex flex-col  justify-evenly pt-[220px]   items-center min-h-[100vh]">
           <div className="relative">
             <AnimatedPalm
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-[100vh] py-4 sm:flex-row flex-col sm:flex-wrap flex justify-evenly">
+      <section className="h-[100vh] py-4 sm:flex-row flex-col sm:flex-wrap flex justify-evenly flex-1">
         <h2 className="w-full text-center text-2xl text-red-300 font-bold">
           Do like so many others!
         </h2>
@@ -49,7 +49,7 @@ export default function Home() {
           description="Holidaze transformed my cabin into a sought-after destination with simple listings, exceptional guests, and constant bookings."
         />
       </section>
-      <section>
+      <section className="flex-1">
         <div className="bg-white p-12 flex">
           <p className="max-w-[400px] min-w-[280px] flex-1">
             Unlock the full potential of your property. List with Holidaze and
