@@ -47,7 +47,7 @@ export const SocialProofCard: FC<SocialProofProps> = ({
 
   return (
     <div
-      className={` h-[470px] w-[340px] ${courier.className} bg-white  px-4 pt-4 pb-4`}>
+      className={` h-[470px] w-[300px] sm:w-[340px] ${courier.className} bg-white  px-4 pt-4 pb-4`}>
       <Image
         ref={card}
         width={1024}
