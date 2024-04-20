@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SocialProofCard } from "./ui/components/SocialProofCard";
 import { AnimatedPalm } from "./ui/components/AnimatedPalm";
+import { HowItWorks } from "./ui/components/HowItWorks";
 export default function Home() {
   return (
     <main className=" flex flex-col ">
@@ -49,25 +50,9 @@ export default function Home() {
           description="Holidaze transformed my cabin into a sought-after destination with simple listings, exceptional guests, and constant bookings."
         />
       </section>
-      <section className="flex-1">
-        <div className="bg-white p-12 flex">
-          <p className="max-w-[400px] min-w-[250px] flex-1">
-            Unlock the full potential of your property. List with Holidaze and
-            watch your bookings soar.
-          </p>
-          <button className="p-2 bg-red-300 rounded-md">
-            Start Hosting Today
-          </button>
-        </div>
-        <div className="bg-white p-4 flex">
-          <button className="p-2 bg-green-500 rounded-md">
-            Find your adventure
-          </button>
-          <p>
-            Escape the ordinary. Handpicked venues for unforgettable family
-            vacations are waiting for you on Holidaze.
-          </p>
-        </div>
+
+      <section>
+        <HowItWorks />
       </section>
     </main>
   );
