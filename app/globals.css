@@ -35,6 +35,7 @@ body {
 .background--landing--left {
   background-image: url(/leftbg.png);
   background-size: cover;
+  background-position: center center;
 }
 .background--landing--right {
   background-image: url(/rightbg.png);
