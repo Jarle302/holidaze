@@ -105,7 +105,7 @@ export const HowItWorks = () => {
             Whether you&apos;re looking for the rustic charm of a mountain lodge
             or the serene beauty of a beachfront villa, our diverse collection
             has something for every taste and occasion. Let your journey begin
-            heredsfsdfsdfsdfdsfdsfsdfdsf
+            here
           </p>
         </div>
       </section>
