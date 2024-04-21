@@ -179,7 +179,8 @@ export const HowItWorks = () => {
             </div>
             <div className="absolute howItWorks z-[415] rounded-r-lg  h-[120px] w-[160px]  bg-white text-red-300">
               <p>
-                Go to the 'Add Venue' section to enter your venue's details.
+                Go to the &apos;Add Venue&apos; section to enter your
+                venue&apos;s details.
               </p>
             </div>
           </div>
@@ -202,10 +203,11 @@ export const HowItWorks = () => {
       <section
         className="bg-teal-200 w-full absolute h-full  z-[500]"
         ref={managerSection}>
-        Add a Venue Log into the dashboard. Navigate to the 'Add Venue' section.
-        Enter detailed information about the venue, including name, location,
-        capacity, amenities, available dates, photos, and pricing. Submit the
-        venue for approval (if there's an approval process).
+        Add a Venue Log into the dashboard. Navigate to the &apos;Add
+        Venue&apos; section. Enter detailed information about the venue,
+        including name, location, capacity, amenities, available dates, photos,
+        and pricing. Submit the venue for approval (if there&apos;s an approval
+        process).
       </section>
       <section
         className="bg-red-400 w-full absolute h-full  z-[600]"
