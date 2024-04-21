@@ -45,7 +45,7 @@ export const HowItWorks = () => {
           xPercent: 100,
         })
         .from(thirdSection.current, {
-          yPercent: -150,
+          yPercent: 150,
         })
         .from(renterSection.current, {
           xPercent: -100,
