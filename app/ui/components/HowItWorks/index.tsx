@@ -111,7 +111,7 @@ export const HowItWorks = () => {
       </section>
       <section
         ref={thirdSection}
-        className=" bg-black py-4 sm:flex-row flex-col sm:flex-wrap flex gap-4 items-center justify-evenly w-full absolute sm:h-full h-[200vh] z-[300]">
+        className="background--socialProof bg-black py-4 sm:flex-row flex-col sm:flex-wrap flex gap-4 items-center justify-evenly w-full absolute sm:h-full h-[200vh] z-[300]">
         <h2 className="w-full text-center text-2xl text-red-300 font-bold">
           Do like so many others!
         </h2>
@@ -130,7 +130,7 @@ export const HowItWorks = () => {
       </section>
 
       <section
-        className="bg-teal-700 w-full absolute h-full z-[400] flex flex-col p-[20px] sm:p-[40px] "
+        className="renterSection--bg bg-teal-700 w-full absolute h-full z-[400] flex flex-col p-[20px] sm:p-[40px] "
         ref={renterSection}>
         <h3 className="text-red-300 text-3xl text-center w-full">
           Own a Unique Venue?
@@ -201,7 +201,7 @@ export const HowItWorks = () => {
         <p>Join Holidaze Today — where every venue finds its perfect guest.</p>
       </section>
       <section
-        className="bg-teal-200 w-full absolute h-full  z-[500]"
+        className="bg-teal-200 w-full absolute h-full  z-[500] managerSection--bg "
         ref={managerSection}>
         Add a Venue Log into the dashboard. Navigate to the &apos;Add
         Venue&apos; section. Enter detailed information about the venue,

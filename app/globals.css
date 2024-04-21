@@ -33,13 +33,30 @@ body {
 }
 
 .background--landing--left {
-  background-image: url(/leftbg.png);
+  background-image: url(/homeFirstBg.jpg);
   background-size: cover;
   background-position: center center;
 }
 .background--landing--right {
-  background-image: url(/rightbg.png);
+  background-image: url(/homeSecondBg.jpg);
   background-size: cover;
+  background-position: center center;
+}
+.background--socialProof {
+  background-image: url(/peopleJumping.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.renterSection--bg {
+  background-image: url(/howItWorks.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+.managerSection--bg {
+  background-image: url(/adventureBg.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 .bg--gradient {
