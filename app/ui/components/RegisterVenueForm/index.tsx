@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FormData, formPage, FormState } from "../../constants/types";
+import { Venue, formPage, FormState } from "../../constants/types";
 import { FloatingLabelInput } from "../FloatingLabelInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 
@@ -26,7 +26,7 @@ export const RegisterVenueForm = () => {
     lng: 0,
     media: [],
   });
-  function getFormData(formState: FormState) {
+  function getVenue(formState: FormState) {
     let {
       address,
       city,
@@ -43,12 +43,12 @@ export const RegisterVenueForm = () => {
       alt,
       ...tempData
     } = formState;
-    const formData = {
+    const Venue = {
       ...tempData,
       location: { lat, lng, continent, city, zip, country, address },
       meta: { wifi, breakfast, parking, pets },
     };
-    return formData;
+    return Venue;
   }
   function handleClick() {
     setFormState((prev) => ({
@@ -260,7 +260,7 @@ export const RegisterVenueForm = () => {
             </button>
             <button
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
-              onClick={() => console.log(getFormData(formState))}>
+              onClick={() => console.log(getVenue(formState))}>
               Register Venue
             </button>
           </div>
