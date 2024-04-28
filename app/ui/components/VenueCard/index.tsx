@@ -1,29 +1,43 @@
 "use client";
-import { Venue } from "../../constants/types";
+import { Venue, Booking } from "../../constants/types";
+import { BookingCalendar } from "../BookingCalendar";
 import { useState } from "react";
-type VenueCardProps = Venue & { id: string; bookings: [] };
-export const VenueCard = ({ price, name, id, description,bookings }: VenueCardProps) => {
+import { Carousel } from "../Carousel";
+type VenueCardProps = Venue & { id: string; bookings: Booking[] };
+export const VenueCard = ({
+  price,
+  name,
+  id,
+  description,
+  media,
+  bookings,
+}: VenueCardProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
 
-
-
   return (
-    <div>
+    <div className="w-[300px]">
       {!showCalendar && (
         <>
-          <img src="" alt="" />
+          <Carousel media={media} />
           <div>
             <h3>{name}</h3>
             <p>{description}</p>
             <p>
               <span>{price}</span> a night
             </p>
-            <button>See available dates</button>
+            <button onClick={() => setShowCalendar((prev) => !prev)}>
+              See available dates
+            </button>
             <p></p>
           </div>
         </>
       )}
-      {(showCalendar && (<Calendar bookings={bookings} />))}
+      {showCalendar && (
+        <>
+          <BookingCalendar bookings={bookings} />
+          <button onClick={() => setShowCalendar((prev) => !prev)}>Back</button>
+        </>
+      )}
     </div>
   );
 };

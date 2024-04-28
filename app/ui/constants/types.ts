@@ -1,32 +1,30 @@
 export type formPage = 1 | 2 | 3;
 
-export type Booking={
-  
-    id: string,
-    dateFrom: string,
-    dateTo: string,
-    guests: number,
-    created: string,
-    updated: string,
-    customer: {
-      name: string,
-      email: string,
-      bio: string,
-      avatar: {
-        url: string,
-        alt: string
-      },
-      banner:Banner
-}}
-  
-type Banner =  {
-  url: string,
-  alt: string
-}
+export type Booking = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  created: string;
+  updated: string;
+  customer: {
+    name: string;
+    email: string;
+    bio: string;
+    avatar: {
+      url: string;
+      alt: string;
+    };
+    banner: Banner;
+  };
+};
 
+type Banner = {
+  url: string;
+  alt: string;
+};
 
-
-type mediaObject = {
+export type mediaObject = {
   url: string;
   alt: string;
 };
