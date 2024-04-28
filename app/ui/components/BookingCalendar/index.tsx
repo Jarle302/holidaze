@@ -20,6 +20,7 @@ export const BookingCalendar = ({ bookings }: CalendarProps) => {
 
   return (
     <Calendar
+    showFixedNumberOfWeeks={true}
       selectRange={true}
       tileDisabled={({ date }) => {
         console.log(

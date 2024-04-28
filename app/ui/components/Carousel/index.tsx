@@ -18,20 +18,23 @@ export const Carousel = ({ media }: { media: Media }) => {
     );
   }
   return (
-    <div className="w-full h-full flex">
-      <button
-        className={buttonClasses}
-        onClick={() => incrementDecrement(false)}>
-        <GrPrevious />
-      </button>
+    <div className="w-[236px] h-[236px] flex relative">
+      <div className="flex justify-between absolute w-full top-2/4 translate-y-[-50%]">
+        <button
+          className={buttonClasses}
+          onClick={() => incrementDecrement(false)}>
+          <GrPrevious />
+        </button>
+
+        <button className={buttonClasses} onClick={() => incrementDecrement()}>
+          <GrNext />
+        </button>
+      </div>
       <img
         className="w-full h-full"
         src={media[imageIndex].url}
         alt={media[imageIndex].alt}
       />
-      <button className={buttonClasses} onClick={() => incrementDecrement()}>
-        <GrNext />
-      </button>
     </div>
   );
 };

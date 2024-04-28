@@ -3,6 +3,10 @@ import { Venue, Booking } from "../../constants/types";
 import { BookingCalendar } from "../BookingCalendar";
 import { useState } from "react";
 import { Carousel } from "../Carousel";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 type VenueCardProps = Venue & { id: string; bookings: Booking[] };
 export const VenueCard = ({
   price,
@@ -12,20 +16,38 @@ export const VenueCard = ({
   media,
   bookings,
 }: VenueCardProps) => {
-  const [showCalendar, setShowCalendar] = useState(false);
+  gsap.registerPlugin(useGSAP);
+  const tl = useRef<gsap.core.Tween>();
+  const card = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    // gsap code here...
+    tl.current = gsap.to(card.current, {
+      duration: 1,
 
+      rotationY: 180,
+    });
+    tl.current.pause();
+  }); // <-- automatically reverted
+
+  const [showCalendar, setShowCalendar] = useState(false);
+  const buttonStyle = "py-2 w-full bg-red-300 ";
   return (
-    <div className="w-[300px]">
+    <div ref={card} className="w-[300px] bg-white p-8">
       {!showCalendar && (
         <>
           <Carousel media={media} />
           <div>
-            <h3>{name}</h3>
+            <h3 className="text-lg font-bold">{name}</h3>
             <p>{description}</p>
             <p>
-              <span>{price}</span> a night
+              <span className="font-bold">{price}</span> a night
             </p>
-            <button onClick={() => setShowCalendar((prev) => !prev)}>
+            <button
+              className={buttonStyle}
+              onClick={() => {
+                tl.current?.restart();
+                setShowCalendar((prev) => !prev);
+              }}>
               See available dates
             </button>
             <p></p>
@@ -34,8 +56,17 @@ export const VenueCard = ({
       )}
       {showCalendar && (
         <>
-          <BookingCalendar bookings={bookings} />
-          <button onClick={() => setShowCalendar((prev) => !prev)}>Back</button>
+          <div className="counter-flip">
+            <BookingCalendar bookings={bookings} />
+            <button
+              className={buttonStyle}
+              onClick={() => {
+                setShowCalendar((prev) => !prev);
+                tl.current?.reverse();
+              }}>
+              Back
+            </button>
+          </div>
         </>
       )}
     </div>

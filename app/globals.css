@@ -73,3 +73,7 @@ body {
   background-position: bottom;
   background-size: cover;
 }
+
+.counter-flip {
+  transform: rotateY(180deg);
+}
