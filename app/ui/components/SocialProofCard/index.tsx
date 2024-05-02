@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FC } from "react";
-import { courier } from "@/app/fonts";
+import { courier } from "../../../fonts";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

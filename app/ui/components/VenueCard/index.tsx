@@ -22,9 +22,9 @@ export const VenueCard = ({
   useGSAP(() => {
     // gsap code here...
     tl.current = gsap.to(card.current, {
-      duration: 1,
-
+      duration: 0.3,
       rotationY: 180,
+      easing: "elastic.in",
     });
     tl.current.pause();
   }); // <-- automatically reverted
@@ -32,7 +32,7 @@ export const VenueCard = ({
   const [showCalendar, setShowCalendar] = useState(false);
   const buttonStyle = "py-2 w-full bg-red-300 ";
   return (
-    <div ref={card} className="w-[300px] bg-white p-8">
+    <div ref={card} className="w-[300px] bg-white p-8 ">
       {!showCalendar && (
         <>
           <Carousel media={media} />
