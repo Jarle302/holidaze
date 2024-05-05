@@ -1,13 +1,13 @@
 type inputProps = {
   label: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   type?: string;
 };
 
 export const AuthInput = ({
   label = "test",
-  handleChange = (e) => e.target.name,
+  handleChange,
   name = "test",
   type = "text",
 }: inputProps) => {
@@ -18,7 +18,7 @@ export const AuthInput = ({
       </label>
       <input
         className="bg-transparent outline-none h-[21px]"
-        onChange={handleChange}
+        onChange={handleChange && handleChange}
         type={type}
         name={name}
         id={name}

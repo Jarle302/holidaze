@@ -1,4 +1,4 @@
-import { LoginForm } from "@/app/ui/components/LoginForm";
+import { LoginForm } from "@/app/ui/components/LoginFormNew";
 import Image from "next/image";
 import { FC } from "react";
 
