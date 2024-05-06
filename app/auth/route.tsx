@@ -1,20 +1,20 @@
-import { cookies } from "next/headers";
 import { type NextRequest } from "next/server";
 import { baseUrl } from "../ui/constants/constants";
 
 export async function GET(request: NextRequest) {
-  console.log("SE HER ", request.headers);
   const key = process.env.APIKEY;
   if (!key) {
     throw new Error("Missing API KEY!");
   }
   const token = request.cookies.get("token");
-  console.log(request.cookies);
   if (!token) {
     throw new Error("Missing accessToken");
   }
 
-  const requestBody = await request.json();
+  let requestBody = {};
+  if (request.headers.get("content-type")?.includes("application/json")) {
+    requestBody = await request.json();
+  }
   const searchParams = request.nextUrl.searchParams;
   const url = baseUrl + searchParams.get("endpoint");
   const isGet = Object.keys(requestBody).length === 0;
@@ -29,6 +29,14 @@ export async function GET(request: NextRequest) {
   };
   const response = await fetch(url, fetchOptions);
   const data = await response.json();
-  console.log(requestBody);
+  /*
+  return new Response(JSON.stringify(data), {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      'Content-Type':'application/json'
+    },
+  });*/
   return Response.json({ data });
 }
