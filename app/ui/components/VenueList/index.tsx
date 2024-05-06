@@ -7,7 +7,7 @@ export const VenueList = async () => {
   );
   const data = await response.json();
   console.log("venueListDATA:", data);
-  const cards = data.data.map((venue) => <VenueCard {...venue} />);
+  const cards = data.data.map((venue) => <VenueCard key={venue.id} {...venue} />);
 
   return cards;
 };
