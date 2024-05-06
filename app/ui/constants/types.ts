@@ -47,6 +47,7 @@ type location = {
 };
 
 export type Venue = {
+  id: string;
   name: string;
   price: number;
   maxGuests: number;
