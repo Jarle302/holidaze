@@ -3,8 +3,14 @@ import { Venue, Booking } from "../../constants/types";
 
 type bookings = { bookings: Booking[] };
 export const VenueList = async () => {
-  const url = process.env.siteUrl;
-  const response = await fetch(url as string, {
+  const baseUrl = process.env.siteUrl;
+  if (!baseUrl) {
+    throw new Error("baseUrl missing");
+  }
+  const endpoint = encodeURIComponent("holidaze/bookings");
+  const url = `${baseUrl}?endpoint=${endpoint}`;
+
+  const response = await fetch(url, {
     method: "GET",
     credentials: "include",
   });
