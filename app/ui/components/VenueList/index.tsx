@@ -13,13 +13,12 @@ export const VenueList = async () => {
     }
   );
 
-  //const data = await response.json();
-  //console.log("this is the data", data);
+  const data = await response.json();
+  console.log("this is the data", data);
 
-  //const cards = data.data.map((venue: Venue & bookings) => (
-  //<VenueCard key={venue.name} {...venue} />
-  // ));
+  const cards = data.data.map((venue: Venue & bookings) => (
+    <VenueCard key={venue.name} {...venue} />
+  ));
 
-  //return cards;
-  return <h1>test</h1>;
+  return cards;
 };
