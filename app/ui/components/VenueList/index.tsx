@@ -6,7 +6,7 @@ export const VenueList = async () => {
   const endpoint = encodeURIComponent("holidaze/venues?_bookings=true");
 
   const response = await fetch(
-    `http://localhost:3000/auth?endpoint=${endpoint}`,
+    `https://holidazejarle.netlify.app/auth?endpoint=${endpoint}`,
     {
       method: "GET",
       credentials: "include",
