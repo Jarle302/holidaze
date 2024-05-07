@@ -5,22 +5,23 @@ type bookings = { bookings: Booking[] };
 export const VenueList = async () => {
   const endpoint = encodeURIComponent("holidaze/venues?_bookings=true");
 
-  try{
-  const response = await fetch(
-    `https://holidazejarle.netlify.app/auth?endpoint=${endpoint}`,
-    {
-      method: "GET",
-      credentials: "include",
-    }
-  );
+  try {
+    const response = await fetch(
+      `https://holidazejarle.netlify.app/auth?endpoint=${endpoint}`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
 
-  const data = await response.json();
-  console.log("this is the data", data);
+    const data = await response.json();
 
-  const cards = data.data.map((venue: Venue & bookings) => (
-    <VenueCard key={venue.name} {...venue} />
-  ));
+    const cards = data.data.map((venue: Venue & bookings) => (
+      <VenueCard key={venue.name} {...venue} />
+    ));
 
-  return cards;}
-  catch(error){console.log()}
+    return cards;
+  } catch (error) {
+    console.log(error);
+  }
 };
