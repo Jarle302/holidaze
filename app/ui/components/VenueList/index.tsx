@@ -3,10 +3,10 @@ import { Venue, Booking } from "../../constants/types";
 type bookings = { bookings: Booking[] };
 
 export const VenueList = async () => {
-  const endpoint = encodeURIComponent("holidaze/venues");
+  const endpoint = encodeURIComponent("holidaze/venues?_bookings=true");
 
   const response = await fetch(
-    `https://holidazejarle.netlify.app/auth?endpoint=${endpoint}`,
+    `http://localhost:3000/auth?endpoint=${endpoint}`,
     {
       method: "GET",
       credentials: "include",

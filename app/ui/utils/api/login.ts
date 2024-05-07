@@ -42,7 +42,6 @@ export default async function loginAction(state: any, formData: FormData) {
       name: "token",
       value: token,
       httpOnly: true,
-      secure: true,
       sameSite: "lax",
     });
     return data;

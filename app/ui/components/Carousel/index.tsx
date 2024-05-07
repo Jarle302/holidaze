@@ -32,8 +32,8 @@ export const Carousel = ({ media }: { media: Media }) => {
       </div>
       <img
         className="w-full h-full"
-        src={media[imageIndex].url}
-        alt={media[imageIndex].alt}
+        src={media[imageIndex]?.url}
+        alt={media[imageIndex]?.alt}
       />
     </div>
   );
