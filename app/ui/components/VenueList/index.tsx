@@ -5,6 +5,7 @@ type bookings = { bookings: Booking[] };
 export const VenueList = async () => {
   const endpoint = encodeURIComponent("holidaze/venues?_bookings=true");
 
+  try{
   const response = await fetch(
     `https://holidazejarle.netlify.app/auth?endpoint=${endpoint}`,
     {
@@ -20,5 +21,6 @@ export const VenueList = async () => {
     <VenueCard key={venue.name} {...venue} />
   ));
 
-  return cards;
+  return cards;}
+  catch(error){console.log()}
 };
