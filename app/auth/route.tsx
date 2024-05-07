@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   if (!token) {
     throw new Error("Missing accessToken");
   }
-
+  console.log(token, "TOOOOOOOOOOOKEN");
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
@@ -29,14 +29,13 @@ export async function GET(request: NextRequest) {
   };
   const response = await fetch(url, fetchOptions);
   const data = await response.json();
-  /*
+
   return new Response(JSON.stringify(data), {
     status: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-  });*/
-  return Response.json({ data });
+  });
 }
