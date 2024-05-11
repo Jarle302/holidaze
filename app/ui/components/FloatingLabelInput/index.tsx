@@ -9,11 +9,11 @@ export const FloatingLabelInput = ({
   value,
 }: {
   name: string;
-  value: string | number;
+  value?: string | number;
   label?: string;
   type?: string;
   width?: string;
-  handleChange: (
+  handleChange?: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 }) => {
@@ -38,21 +38,21 @@ export const FloatingLabelInput = ({
     <div className={divStyle}>
       {type === "textArea" ? (
         <textarea
-          onChange={handleChange}
+          onChange={handleChange && handleChange}
           className="outline-none py-3 h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
           name={name}
           id={id}
           cols={30}
-          value={value}
+          value={value && value}
           rows={10}></textarea>
       ) : (
         <input
-          onChange={handleChange}
+          onChange={handleChange && handleChange}
           className="outline-none h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg "
           type={type ? type : "text"}
           name={name}
           id={id}
-          value={value}
+          value={value && value}
         />
       )}
       <label

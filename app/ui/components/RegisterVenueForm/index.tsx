@@ -1,72 +1,27 @@
 "use client";
 import { useState } from "react";
+import { handleChange } from "./functions";
 import { Venue, formPage, FormState } from "../../constants/types";
 import { FloatingLabelInput } from "../FloatingLabelInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
-
+import { ImageAdder } from "./ImageAdder";
+import { emptyFormStateObject } from "../../constants/constants";
+import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
 export const RegisterVenueForm = () => {
   const [formPage, setFormPage] = useState<formPage>(() => 1);
-  const [formState, setFormState] = useState<FormState>({
-    name: "",
-    price: 0,
-    maxGuests: 0,
-    description: "",
-    url: "",
-    alt: "",
-    parking: false,
-    wifi: false,
-    pets: false,
-    breakfast: false,
-    city: "",
-    address: "",
-    zip: "",
-    country: "",
-    continent: "",
-    lat: 0,
-    lng: 0,
-    media: [],
-  });
-  function getVenue(formState: FormState) {
-    let {
-      address,
-      city,
-      zip,
-      country,
-      continent,
-      lat,
-      lng,
-      parking,
-      wifi,
-      pets,
-      breakfast,
-      url,
-      alt,
-      ...tempData
-    } = formState;
-    const Venue = {
-      ...tempData,
-      location: { lat, lng, continent, city, zip, country, address },
-      meta: { wifi, breakfast, parking, pets },
-    };
-    return Venue;
-  }
+  const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
+ 
+console.log(formState)
+
   function handleClick() {
     setFormState((prev) => ({
       ...prev,
-      media: [...prev.media, { alt: prev.alt, url: prev.url }],
+      media: [...prev.media, { alt: formState.alt, url: formState.url }],
+      alt: "",
+      url: "",
     }));
   }
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { value, name, checked, type } = event.target as HTMLInputElement;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-    console.log(formState);
-  }
   const defaultStyle = "w-4 h-4 rounded-full bg-zinc-800 p-2";
   const activeStyle = "w-4 h-4 rounded-full bg-red-300 p-2";
 
@@ -97,24 +52,24 @@ export const RegisterVenueForm = () => {
           <FloatingLabelInput
             name="name"
             value={formState.name}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
           />
           <FloatingLabelInput
             name="price"
             value={formState.price}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             type="number"
           />
           <FloatingLabelInput
             name="maxGuests"
             value={formState.maxGuests}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             label="max guests"
           />
           <FloatingLabelInput
             name="description"
             value={formState.description}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             type="textArea"
           />
 
@@ -134,7 +89,7 @@ export const RegisterVenueForm = () => {
           <div className="flex gap-1">
             <FloatingLabelInput
               value={formState.url}
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e, setFormState)}
               name="url"
               label="Image url"
               width="m"
@@ -147,37 +102,32 @@ export const RegisterVenueForm = () => {
               Add
             </button>
           </div>
-          <FloatingLabelInput
-            value={formState.alt}
-            handleChange={handleChange}
-            name="alt"
-            label="Image description"
-            type="textArea"
-          />
+        
+          <ImageAdder state={formState} setState={setFormState} />
           <div
             className={`border-2 border-zinc-500 rounded-lg max-w-max p-2 ${containerStyle}`}>
             <p className="text-xl font-bold">Misc</p>
             <div className="flex justify-between w-[200px]">
               <LabeledCheckbox
                 value={formState.wifi}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e, setFormState)}
                 name="wifi"
               />
               <LabeledCheckbox
                 value={formState.parking}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e, setFormState)}
                 name="parking"
               />
             </div>
             <div className="flex justify-between w-[200px]">
               <LabeledCheckbox
                 value={formState.pets}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e, setFormState)}
                 name="pets"
               />
               <LabeledCheckbox
                 value={formState.breakfast}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e, setFormState)}
                 name="breakfast"
               />
             </div>
@@ -206,43 +156,43 @@ export const RegisterVenueForm = () => {
         <div className={containerStyle}>
           <FloatingLabelInput
             value={formState.address}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             name="address"
           />
           <div className="flex gap-2">
             <FloatingLabelInput
               value={formState.city}
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e, setFormState)}
               name="city"
               width="m"
             />
             <FloatingLabelInput
               value={formState.zip}
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e, setFormState)}
               name="zip"
               width="s"
             />
           </div>
           <FloatingLabelInput
             value={formState.country}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             name="country"
           />
           <FloatingLabelInput
             value={formState.continent}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e, setFormState)}
             name="continent"
           />
           <div className="flex flex-wrap gap-2">
             <p className="w-full">Coordinates</p>
             <FloatingLabelInput
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e, setFormState)}
               name="lat"
               width="s"
               value={formState.lat}
             />
             <FloatingLabelInput
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e, setFormState)}
               name="lng"
               width="s"
               value={formState.lng}
@@ -260,7 +210,7 @@ export const RegisterVenueForm = () => {
             </button>
             <button
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
-              onClick={() => console.log(getVenue(formState))}>
+              onClick={() => console.log(convertFormStateToVenue(formState))}>
               Register Venue
             </button>
           </div>
