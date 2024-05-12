@@ -44,6 +44,7 @@ type location = {
   continent: string;
   lat: number;
   lng: number;
+  city: string;
 };
 
 export type Venue = {
@@ -75,4 +76,18 @@ export type FormState = {
   lat: number;
   lng: number;
   media: media;
+};
+
+export type Owner = {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: {
+    url: string;
+    alt: string;
+  };
+  banner: {
+    url: string;
+    alt: string;
+  };
 };

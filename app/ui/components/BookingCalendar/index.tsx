@@ -4,11 +4,15 @@ import { addDatesFromRangeToSet } from "../../utils/addDatesFromRangeToSet";
 import "./style.css";
 
 type Bookings = Booking[];
-type CalendarProps = { bookings: Bookings };
+type CalendarProps = { bookings: Bookings; onChange?: any; value?: any };
 
 const bookedDates: Set<string> = new Set();
 
-export const BookingCalendar = ({ bookings }: CalendarProps) => {
+export const BookingCalendar = ({
+  bookings,
+  onChange,
+  value,
+}: CalendarProps) => {
   (function populateBookedDates(bookings: Bookings) {
     for (let i = 0; i < bookings.length; i++) {
       addDatesFromRangeToSet(
@@ -21,18 +25,14 @@ export const BookingCalendar = ({ bookings }: CalendarProps) => {
 
   return (
     <Calendar
-    showFixedNumberOfWeeks={true}
+      showFixedNumberOfWeeks={true}
+      onChange={onChange && onChange}
+      value={value && value}
       selectRange={true}
       tileDisabled={({ date }) => {
-        console.log(
-          "bool:",
-          bookedDates.has(date.toISOString().split("T")[0]),
-          "date:",
-          date.toISOString().split("T")[0]
-        );
+      
         return bookedDates.has(date.toISOString().split("T")[0]);
       }}
     />
   );
 };
-

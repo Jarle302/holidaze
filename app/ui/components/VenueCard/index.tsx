@@ -6,6 +6,7 @@ import { Carousel } from "../Carousel";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 
 type VenueCardProps = Venue & { id: string; bookings: Booking[] };
 export const VenueCard = ({
@@ -35,23 +36,25 @@ export const VenueCard = ({
     <div ref={card} className="w-[300px] bg-white p-8 ">
       {!showCalendar && (
         <>
-          <Carousel media={media} />
-          <div>
-            <h3 className="text-lg font-bold">{name}</h3>
-            <p>{description}</p>
-            <p>
-              <span className="font-bold">{price}</span> a night
-            </p>
-            <button
-              className={buttonStyle}
-              onClick={() => {
-                tl.current?.restart();
-                setShowCalendar((prev) => !prev);
-              }}>
-              See available dates
-            </button>
-            <p></p>
-          </div>
+          <Link href={`/venues/singleVenue/${id}`}>
+            <Carousel media={media} />
+            <div>
+              <h3 className="text-lg font-bold">{name}</h3>
+              <p>{description}</p>
+              <p>
+                <span className="font-bold">{price}</span> a night
+              </p>
+              <p></p>
+            </div>
+          </Link>
+          <button
+            className={buttonStyle}
+            onClick={() => {
+              tl.current?.restart();
+              setShowCalendar((prev) => !prev);
+            }}>
+            See available dates
+          </button>
         </>
       )}
       {showCalendar && (
