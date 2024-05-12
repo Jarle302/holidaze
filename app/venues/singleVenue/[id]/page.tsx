@@ -12,19 +12,18 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { name, description, media, bookings } = data.data;
 
   return (
-    <main className="bg-zinc-200 md:p-[40px] p-[20px]">
-      <h1 className="text-[50px]  text-red-300 font-bold">{name}</h1>
-      <div className="flex flex-col max-w-[500px]">
+    <main className="bg-zinc-200 md:p-[40px] p-[20px] flex flex-wrap gap-5">
+      <h1 className="text-[50px]  w-full text-red-300 font-bold">{name}</h1>
+      <div className="flex flex-col max-w-[500px] gap-5">
         <div className="p-3 bg-white max-h-max max-w-max">
           <Carousel fitToContainer={true} media={media} />
-          <h3 className="text-xl font-bold">{name}</h3>
         </div>
         <p>{description}</p>
       </div>
-      <div>
+      <div className="flex flex-col gap-5">
+        <VenueBooker bookings={bookings} />
         <VenueDetails venue={data.data} />
       </div>
-      <VenueBooker bookings={bookings} />
     </main>
   );
 }
