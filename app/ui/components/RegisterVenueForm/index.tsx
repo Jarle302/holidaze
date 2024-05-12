@@ -7,11 +7,12 @@ import { LabeledCheckbox } from "../LabeledCheckbox";
 import { ImageAdder } from "./ImageAdder";
 import { emptyFormStateObject } from "../../constants/constants";
 import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
+import { ImageList } from "./ImageList";
 export const RegisterVenueForm = () => {
   const [formPage, setFormPage] = useState<formPage>(() => 1);
   const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
- 
-console.log(formState)
+
+  console.log(formState);
 
   function handleClick() {
     setFormState((prev) => ({
@@ -34,7 +35,7 @@ console.log(formState)
   const containerStyle = "flex flex-col gap-3";
 
   return (
-    <form className="bg-zinc-300 h-[80vh] items-center flex flex-col gap-4">
+    <form className="bg-zinc-300 min-h-[100vh] items-center flex flex-col gap-4">
       <h1 className="text-3xl text-red-300 font-bold">Register Venue</h1>
       <div className="flex">
         <button
@@ -102,8 +103,9 @@ console.log(formState)
               Add
             </button>
           </div>
-        
+
           <ImageAdder state={formState} setState={setFormState} />
+          <ImageList state={formState} setState={setFormState} />
           <div
             className={`border-2 border-zinc-500 rounded-lg max-w-max p-2 ${containerStyle}`}>
             <p className="text-xl font-bold">Misc</p>
