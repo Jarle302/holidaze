@@ -13,8 +13,8 @@ export const Carousel = ({
   fitToContainer?: boolean;
 }) => {
   const [imageIndex, setImageIndex] = useState(0);
-
-  const buttonClasses = "self-center p-3";
+  console.log("from button", media);
+  const buttonClasses = "self-center p-1 rounded-full bg-zinc-300";
 
   function incrementDecrement(increment: boolean = true) {
     setImageIndex((prev) =>
@@ -31,17 +31,21 @@ export const Carousel = ({
           ? "w-[236px] h-[236px] flex relative"
           : "w-full h-full flex relative"
       }>
-      <div className="flex justify-between absolute w-full top-2/4 translate-y-[-50%]">
-        <button
-          className={buttonClasses}
-          onClick={() => incrementDecrement(false)}>
-          <GrPrevious />
-        </button>
+      {media.length > 1 && (
+        <div className="flex justify-between absolute w-full top-2/4 translate-y-[-50%]">
+          <button
+            className={buttonClasses}
+            onClick={() => incrementDecrement(false)}>
+            <GrPrevious />
+          </button>
 
-        <button className={buttonClasses} onClick={() => incrementDecrement()}>
-          <GrNext />
-        </button>
-      </div>
+          <button
+            className={buttonClasses}
+            onClick={() => incrementDecrement()}>
+            <GrNext />
+          </button>
+        </div>
+      )}
       <img
         className="w-full h-full"
         src={media[imageIndex]?.url}
