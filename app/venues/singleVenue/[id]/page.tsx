@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <p>{description}</p>
       </div>
       <div className="flex flex-col gap-5">
-        <VenueBooker bookings={bookings} />
+        <VenueBooker id={params.id} bookings={bookings} />
         <VenueDetails venue={data.data} />
       </div>
     </main>
