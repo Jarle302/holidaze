@@ -6,25 +6,31 @@ export const VenueDetails = ({
 }: {
   venue: Venue & { owner: Owner; bookings: Booking[] };
 }) => {
+  if (!venue || Object.keys(venue).length === 0) {
+    throw new Error("404, venue not found");
+  }
+
+  const { maxGuests, price } = venue || "";
+  const { country, city } = venue?.location || "";
+  const { wifi, parking, pets, breakfast } = venue?.meta || "";
+
   return (
     <ul className="max-w-[500px] border-2 border-zinc-500 rounded-lg py-2">
-      <CustomLi category="Max guests">{venue.maxGuests}</CustomLi>
+      <CustomLi category="Max guests">{maxGuests}</CustomLi>
       <CustomLi index={1} category="Price">
-        {venue.price}
+        {price}
       </CustomLi>
-      <CustomLi category="Country">{venue.location.country}</CustomLi>
+      <CustomLi category="Country">{country}</CustomLi>
       <CustomLi index={1} category="City">
-        {venue.location.city}
+        {city}
       </CustomLi>
-      <CustomLi category="Breakfast">
-        {boolToYesNo(venue.meta.breakfast)}
-      </CustomLi>
+      <CustomLi category="Breakfast">{boolToYesNo(breakfast)}</CustomLi>
       <CustomLi index={1} category="Wifi">
-        {boolToYesNo(venue.meta.wifi)}
+        {boolToYesNo(wifi)}
       </CustomLi>
-      <CustomLi category="Pets">{boolToYesNo(venue.meta.pets)}</CustomLi>
+      <CustomLi category="Pets">{boolToYesNo(pets)}</CustomLi>
       <CustomLi index={1} category="Parking">
-        {boolToYesNo(venue.meta.parking)}
+        {boolToYesNo(parking)}
       </CustomLi>
     </ul>
   );

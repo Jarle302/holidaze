@@ -12,6 +12,16 @@ export const Carousel = ({
   media: Media;
   fitToContainer?: boolean;
 }) => {
+  if (media?.length === 0 || !Array.isArray(media)) {
+    return (
+      <img
+        className="w-full h-full"
+        src={"/stampLogo.webp"}
+        alt={"This is a placeholder image"}
+      />
+    );
+  }
+
   const [imageIndex, setImageIndex] = useState(0);
   console.log("from button", media);
   const buttonClasses = "self-center p-1 rounded-full bg-zinc-300";
@@ -31,7 +41,7 @@ export const Carousel = ({
           ? "w-[236px] h-[236px] flex relative"
           : "w-full h-full flex relative"
       }>
-      {media.length > 1 && (
+      {media?.length > 1 && (
         <div className="flex justify-between absolute w-full top-2/4 translate-y-[-50%]">
           <button
             className={buttonClasses}
@@ -48,8 +58,12 @@ export const Carousel = ({
       )}
       <img
         className="w-full h-full"
-        src={media[imageIndex]?.url}
-        alt={media[imageIndex]?.alt}
+        src={media[imageIndex]?.url ? media[imageIndex]?.url : "/stampLogo"}
+        alt={
+          media[imageIndex]?.alt
+            ? media[imageIndex]?.alt
+            : "This is image does not have an image description, or it is a placeholder image"
+        }
       />
     </div>
   );

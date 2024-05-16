@@ -9,7 +9,9 @@ export default async function Page({ params }: { params: { id: string } }) {
       `${baseUrl}holidaze/venues/${params.id}?_owner=true&_bookings=true`
     ).then((res) => res.json());
 
-  const { name, description, media, bookings } = data.data;
+  console.log({ data });
+
+  const { name, description, media, bookings } = data.data || "";
 
   return (
     <main className="bg-zinc-200 md:p-[40px] p-[20px] flex flex-wrap gap-5">

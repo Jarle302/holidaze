@@ -14,6 +14,9 @@ export const BookingCalendar = ({
   value,
 }: CalendarProps) => {
   (function populateBookedDates(bookings: Bookings) {
+    if (!Array.isArray(bookings)) {
+      return;
+    }
     for (let i = 0; i < bookings.length; i++) {
       addDatesFromRangeToSet(
         bookings[i].dateFrom,
@@ -30,7 +33,6 @@ export const BookingCalendar = ({
       value={value && value}
       selectRange={true}
       tileDisabled={({ date }) => {
-      
         return bookedDates.has(date.toISOString().split("T")[0]);
       }}
     />

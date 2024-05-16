@@ -8,10 +8,6 @@ export async function GET(request: NextRequest) {
   }
   const token = request.cookies.get("token");
 
-  if (!token) {
-    throw new Error("Missing accessToken");
-  }
-  console.log(token, "TOOOOOOOOOOOKEN");
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
@@ -22,11 +18,9 @@ export async function GET(request: NextRequest) {
   const fetchOptions = {
     method: isGet ? "GET" : "POST",
     headers: {
-      Authorization: `Bearer ${
-        typeof token === "string" ? token : token.value
-      }`,
+      ...(token ? { Authorization: `Bearer ${token.value}` } : {}),
       "X-Noroff-API-Key": key,
-      "Content-Type": !isGet ? "application/json" : "",
+      ...(isGet ? {} : { "Content-Type": "application/json" }),
     },
     body: isGet ? undefined : JSON.stringify(requestBody),
   };
