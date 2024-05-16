@@ -1,5 +1,5 @@
 export default function formDataToObject(formData: FormData) {
-  const formDataObject: { [key: string]: string | boolean } = {};
+  const formDataObject: { [key: string]: string | boolean | number } = {};
 
   formData.forEach((value, key) => {
     if (value === "true" || value === "on") {
@@ -7,7 +7,7 @@ export default function formDataToObject(formData: FormData) {
     } else if (value === "false" || value === "off") {
       formDataObject[key] = false;
     } else {
-      formDataObject[key] = value as string;
+      formDataObject[key] = value as string | number;
     }
   });
 

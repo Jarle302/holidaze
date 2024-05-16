@@ -27,7 +27,6 @@ export async function GET(request: NextRequest) {
   try {
     const response = await fetch(url, fetchOptions);
     const data = await response.json();
-
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: {
