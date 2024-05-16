@@ -58,6 +58,7 @@ export const RegisterForm = () => {
             handleChange={(e) => console.log(e.target)}
             name="imageUrl"
           />
+
           <button
             onClick={(e) => {
               e.preventDefault(),
@@ -94,6 +95,10 @@ export const RegisterForm = () => {
               name="password"
               type="password"
             />
+          </div>
+          <div>
+            <label htmlFor="venueManager">Register as a venue manager</label>
+            <input id="venueManager" name="venueManager" type="checkbox" />
           </div>
         </div>
       </form>

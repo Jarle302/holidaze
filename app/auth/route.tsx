@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     throw new Error("Missing API KEY!");
   }
   const token = request.cookies.get("token");
-
+  console.log({ token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();

@@ -38,6 +38,15 @@ export const RegisterForm = () => {
             <AuthInput label="name" name="name" />
             <AuthInput label="Email" name="email" type="email" />
             <AuthInput label="Password" name="password" type="password" />
+            <div className="flex flex-col">
+              <label htmlFor="venueManager">Register as a venue manager</label>
+              <input
+                className="h-[50px]"
+                id="venueManager"
+                name="venueManager"
+                type="checkbox"
+              />
+            </div>
           </div>
         </div>
       </form>
