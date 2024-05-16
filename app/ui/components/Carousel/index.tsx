@@ -12,6 +12,10 @@ export const Carousel = ({
   media: Media;
   fitToContainer?: boolean;
 }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+  console.log("from button", media);
+  const buttonClasses = "self-center p-1 rounded-full bg-zinc-300";
+
   if (media?.length === 0 || !Array.isArray(media)) {
     return (
       <img
@@ -21,11 +25,6 @@ export const Carousel = ({
       />
     );
   }
-
-  const [imageIndex, setImageIndex] = useState(0);
-  console.log("from button", media);
-  const buttonClasses = "self-center p-1 rounded-full bg-zinc-300";
-
   function incrementDecrement(increment: boolean = true) {
     setImageIndex((prev) =>
       increment
