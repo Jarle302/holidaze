@@ -29,10 +29,9 @@ export default async function bookVenueAction(state: any, formData: FormData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
-    }).then((data) => {
-      data.json();
-      console.log("here is data", { data });
     });
+    const data = await response.json();
+    console.log(data, "this is the response");
   } catch (error) {
     console.log("error", error);
   }
