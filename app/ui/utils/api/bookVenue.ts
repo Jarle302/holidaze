@@ -32,6 +32,7 @@ export default async function bookVenueAction(state: any, formData: FormData) {
     });
     const data = await response.json();
     console.log(data, "this is the response");
+    return data;
   } catch (error) {
     console.log("error", error);
   }
