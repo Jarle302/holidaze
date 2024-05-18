@@ -6,8 +6,8 @@ export async function GET(request: NextRequest) {
   if (!key) {
     throw new Error("Missing API KEY!");
   }
-  const token = request.cookies.get("token");
-  console.log("this is the token",{ token });
+  const token = request.cookies.get("token")?.value;
+  console.log("this is the token", { token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const fetchOptions = {
     method: isGet ? "GET" : "POST",
     headers: {
-      ...(token ? { Authorization: `Bearer ${token.value}` } : {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       "X-Noroff-API-Key": key,
       ...(isGet ? {} : { "Content-Type": "application/json" }),
     },

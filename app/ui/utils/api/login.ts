@@ -44,6 +44,7 @@ export default async function loginAction(state: any, formData: FormData) {
       httpOnly: true,
       sameSite: "lax",
       secure: true,
+      path: "/",
     });
     return data;
   } catch (error) {
