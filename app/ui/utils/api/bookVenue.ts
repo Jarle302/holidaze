@@ -1,9 +1,9 @@
 "use server";
 
-import { baseUrl } from "../../constants/constants";
+import { proxyURL } from "../../constants/constants";
 import formDataToObject from "../formDataToObject";
 const endpoint = "holidaze/bookings";
-const url = baseUrl + endpoint;
+const url = proxyURL + "?endpoint=" + endpoint;
 export default async function bookVenueAction(state: any, formData: FormData) {
   const temp = formDataToObject(formData);
   const dateFrom = new Date(String(temp.dateFrom));

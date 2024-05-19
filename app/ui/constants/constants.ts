@@ -1,5 +1,7 @@
 export const baseUrl = "https://v2.api.noroff.dev/"
 
+export const proxyURL = "https://holidazejarle.netlify.app/auth"
+
 export const  emptyFormStateObject = {
     name: "",
     price: 0,
