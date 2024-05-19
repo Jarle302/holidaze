@@ -6,7 +6,7 @@ const base = process.env.NEXT_PUBLIC_BASE_URL;
 
 const endpoint = "holidaze/bookings";
 //const url = proxyURL + "?endpoint=" + endpoint;
-const url = base + "?endpoint=" + endpoint;
+const url = base + "/auth" + "?endpoint=" + endpoint;
 console.log("this is the url", url);
 export default async function bookVenueAction(state: any, formData: FormData) {
   const temp = formDataToObject(formData);
