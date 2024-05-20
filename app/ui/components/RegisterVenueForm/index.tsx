@@ -8,9 +8,12 @@ import { ImageAdder } from "./ImageAdder";
 import { emptyFormStateObject } from "../../constants/constants";
 import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
 import { ImageList } from "./ImageList";
+import registerVenue from "../../utils/api/registerVenue";
+
 export const RegisterVenueForm = () => {
   const [formPage, setFormPage] = useState<formPage>(() => 1);
   const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
+
 
   console.log(formState);
 
@@ -77,6 +80,7 @@ export const RegisterVenueForm = () => {
           <button
             className="p-2 rounded-lg bg-red-300"
             onClick={(e) => {
+              e.preventDefault();
               setFormPage((prev) =>
                 prev < 3 ? ((prev + 1) as formPage) : prev
               );
@@ -137,6 +141,7 @@ export const RegisterVenueForm = () => {
           <button
             className="p-2 rounded-lg bg-zinc-400 text-white"
             onClick={(e) => {
+              e.preventDefault();
               setFormPage((prev) =>
                 prev > 1 ? ((prev - 1) as formPage) : prev
               );
@@ -146,6 +151,7 @@ export const RegisterVenueForm = () => {
           <button
             className="p-2 rounded-lg bg-red-300 "
             onClick={(e) => {
+              e.preventDefault();
               setFormPage((prev) =>
                 prev < 3 ? ((prev + 1) as formPage) : prev
               );
@@ -204,6 +210,7 @@ export const RegisterVenueForm = () => {
             <button
               className="p-2 w-[200px] rounded-lg bg-zinc-400 text-white"
               onClick={(e) => {
+                e.preventDefault();
                 setFormPage((prev) =>
                   prev > 1 ? ((prev - 1) as formPage) : prev
                 );
@@ -212,7 +219,11 @@ export const RegisterVenueForm = () => {
             </button>
             <button
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
-              onClick={() => console.log(convertFormStateToVenue(formState))}>
+              onClick={(e) => {
+                e.preventDefault();
+                registerVenue(convertFormStateToVenue(formState));
+
+              }}>
               Register Venue
             </button>
           </div>

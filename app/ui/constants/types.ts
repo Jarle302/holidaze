@@ -91,3 +91,14 @@ export type Owner = {
     alt: string;
   };
 };
+
+export type registerVenueData = {
+  name: string;
+  price: number;
+  maxGuests: number;
+  description: string;
+  breakfast: boolean;
+  media: media;
+  meta: meta;
+  location: location;
+};
