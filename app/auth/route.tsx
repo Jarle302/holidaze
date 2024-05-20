@@ -1,5 +1,6 @@
 import { type NextRequest } from "next/server";
 import { baseUrl } from "../ui/constants/constants";
+import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {
   const key = process.env.APIKEY;
@@ -46,12 +47,15 @@ export async function POST(request: NextRequest) {
   if (!key) {
     throw new Error("Missing API KEY!");
   }
+
+  console.log("HEADERS", request.headers, "HEADERS");
+
+  //const token = request.headers.get("token");
   const token = request.cookies.get("token")?.value;
   console.log("this is the token", { token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
-    console.log(requestBody, "this is the bod");
   }
   const searchParams = request.nextUrl.searchParams;
   const url = baseUrl + searchParams.get("endpoint");
@@ -68,11 +72,14 @@ export async function POST(request: NextRequest) {
   try {
     const response = await fetch(url, fetchOptions);
     const data = await response.json();
+    console.log(data);
     return new Response(JSON.stringify(data), {
       status: 200,
+
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Credentials": "true",
         "Content-Type": "application/json",
       },
     });

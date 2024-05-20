@@ -7,12 +7,14 @@ export const FloatingLabelInput = ({
   width,
   handleChange,
   value,
+  readonly = false,
 }: {
   name: string;
   value?: string | number;
   label?: string;
   type?: string;
   width?: string;
+  readonly?: boolean;
   handleChange?: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -38,6 +40,7 @@ export const FloatingLabelInput = ({
     <div className={divStyle}>
       {type === "textArea" ? (
         <textarea
+          readOnly={readonly}
           onChange={handleChange && handleChange}
           className="outline-none py-3 h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
           name={name}
@@ -53,6 +56,7 @@ export const FloatingLabelInput = ({
           name={name}
           id={id}
           value={value && value}
+          readOnly={readonly}
         />
       )}
       <label

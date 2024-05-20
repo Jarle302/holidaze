@@ -11,6 +11,7 @@ export const VenueList = async () => {
       {
         method: "GET",
         credentials: "include",
+        cache: "no-store",
       }
     );
 

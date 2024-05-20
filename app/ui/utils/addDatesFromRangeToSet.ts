@@ -8,6 +8,6 @@ export function addDatesFromRangeToSet(
   const endDate = Date.parse(to);
 
   for (let ms = startDate; ms <= endDate; ms += msPerDay) {
-    setToBeMutated.add(new Date(ms).toISOString().split("T")[0]);
+    setToBeMutated.add(new Date(ms).toLocaleDateString());
   }
 }

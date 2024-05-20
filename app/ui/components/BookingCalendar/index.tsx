@@ -28,12 +28,13 @@ export const BookingCalendar = ({
 
   return (
     <Calendar
+      locale="en"
       showFixedNumberOfWeeks={true}
       onChange={onChange && onChange}
       value={value && value}
       selectRange={true}
       tileDisabled={({ date }) => {
-        return bookedDates.has(date.toISOString().split("T")[0]);
+        return bookedDates.has(date.toLocaleDateString());
       }}
     />
   );

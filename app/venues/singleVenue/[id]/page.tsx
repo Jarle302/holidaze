@@ -6,7 +6,8 @@ import { VenueBooker } from "./components/VenueBooker";
 export default async function Page({ params }: { params: { id: string } }) {
   const data: { data: Venue & { owner: Owner; bookings: Booking[] } } =
     await fetch(
-      `${baseUrl}holidaze/venues/${params.id}?_owner=true&_bookings=true`
+      `${baseUrl}holidaze/venues/${params.id}?_owner=true&_bookings=true`,
+      { cache: "no-store" }
     ).then((res) => res.json());
 
   console.log({ data });

@@ -1,14 +1,12 @@
-"use server";
+"use client";
 
 import formDataToObject from "../formDataToObject";
 
 const base = process.env.NEXT_PUBLIC_BASE_URL;
 
 const endpoint = "holidaze/bookings";
-//const url = proxyURL + "?endpoint=" + endpoint;
 const url = base + "/auth" + "?endpoint=" + endpoint;
-console.log("this is the url", url);
-export default async function bookVenueAction(state: any, formData: FormData) {
+export default async function bookVenueAction(formData: FormData) {
   const temp = formDataToObject(formData);
   const dateFrom = new Date(String(temp.dateFrom));
   const dateTo = new Date(String(temp.dateTo));
@@ -18,11 +16,12 @@ export default async function bookVenueAction(state: any, formData: FormData) {
     guests: number;
     venueId: string;
   } = {
-    dateFrom: dateFrom.toString(),
-    dateTo: dateTo.toString(),
+    dateFrom: dateFrom.toISOString(),
+    dateTo: dateTo.toISOString(),
     guests: +temp.guests,
     venueId: temp.venueId as string,
   };
+  console.log(requestBody, "this is the req b");
 
   try {
     const response = await fetch(url, {
