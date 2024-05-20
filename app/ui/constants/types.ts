@@ -97,7 +97,6 @@ export type registerVenueData = {
   price: number;
   maxGuests: number;
   description: string;
-  breakfast: boolean;
   media: media;
   meta: meta;
   location: location;

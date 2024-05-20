@@ -14,7 +14,6 @@ export const RegisterVenueForm = () => {
   const [formPage, setFormPage] = useState<formPage>(() => 1);
   const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
 
-
   console.log(formState);
 
   function handleClick() {
@@ -69,6 +68,7 @@ export const RegisterVenueForm = () => {
             value={formState.maxGuests}
             handleChange={(e) => handleChange(e, setFormState)}
             label="max guests"
+            type="number"
           />
           <FloatingLabelInput
             name="description"
@@ -197,12 +197,14 @@ export const RegisterVenueForm = () => {
               handleChange={(e) => handleChange(e, setFormState)}
               name="lat"
               width="s"
+              type="number"
               value={formState.lat}
             />
             <FloatingLabelInput
               handleChange={(e) => handleChange(e, setFormState)}
               name="lng"
               width="s"
+              type="number"
               value={formState.lng}
             />
           </div>
@@ -222,7 +224,6 @@ export const RegisterVenueForm = () => {
               onClick={(e) => {
                 e.preventDefault();
                 registerVenue(convertFormStateToVenue(formState));
-
               }}>
               Register Venue
             </button>
