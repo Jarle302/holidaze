@@ -2,6 +2,7 @@
 import { baseUrl } from "../../constants/constants";
 import { cookies } from "next/headers";
 import formDataToObject from "../formDataToObject";
+import boolToYesNo from "../boolToYesNo";
 
 type Image = {
   url: string;
@@ -19,7 +20,7 @@ type LoginResponse = {
   };
   meta: Record<string, unknown>;
 };
-const loginEndpoint = "auth/login";
+const loginEndpoint = "auth/login?_holidaze=true";
 
 const url = baseUrl + loginEndpoint;
 
@@ -37,11 +38,47 @@ export default async function loginAction(state: any, formData: FormData) {
     });
     const data: LoginResponse = await response.json();
     console.log("this is the log", data, "test:", formDataObject);
-    const { accessToken: token } = data?.data;
+    const { accessToken: token, ...rest } = data?.data;
+    console.log(rest.venueManager, "is venue manager");
     cookies().set({
       name: "token",
       value: token,
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+    cookies().set({
+      name: "name",
+      value: rest?.name,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+    cookies().set({
+      name: "email",
+      value: rest?.email,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+    cookies().set({
+      name: "isVenueManager",
+      value: boolToYesNo(rest?.venueManager),
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+    cookies().set({
+      name: "avatar",
+      value: rest?.avatar?.url,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+    cookies().set({
+      name: "banner",
+      value: rest?.banner?.url,
       sameSite: "none",
       secure: true,
       path: "/",

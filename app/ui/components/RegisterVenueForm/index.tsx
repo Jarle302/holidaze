@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
 import { handleChange } from "./functions";
-import { Venue, formPage, FormState } from "../../constants/types";
+import {
+  Venue,
+  formPage,
+  FormState,
+  registerVenueData,
+} from "../../constants/types";
 import { FloatingLabelInput } from "../FloatingLabelInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 import { ImageAdder } from "./ImageAdder";
@@ -9,8 +14,20 @@ import { emptyFormStateObject } from "../../constants/constants";
 import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
 import { ImageList } from "./ImageList";
 import registerVenue from "../../utils/api/registerVenue";
+import convertToformState from "../../utils/convertToformState";
 
-export const RegisterVenueForm = () => {
+export const RegisterVenueForm = ({
+  venueData,
+}: {
+  venueData?: registerVenueData;
+}) => {
+  let isEditMode = venueData !== undefined ? true : false;
+
+  if (isEditMode) {
+    const emptyFormStateObject = convertToformState(
+      venueData as registerVenueData
+    );
+  }
   const [formPage, setFormPage] = useState<formPage>(() => 1);
   const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
 
@@ -223,7 +240,10 @@ export const RegisterVenueForm = () => {
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
               onClick={(e) => {
                 e.preventDefault();
-                registerVenue(convertFormStateToVenue(formState));
+                if (isEditMode) {
+                  registerVenue(convertFormStateToVenue(formState), "PUT");
+                }
+                registerVenue(convertFormStateToVenue(formState), "POST");
               }}>
               Register Venue
             </button>
