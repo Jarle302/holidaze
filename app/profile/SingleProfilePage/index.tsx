@@ -8,7 +8,7 @@ import { VenueCard } from "@/app/ui/components/VenueCard";
 export default function SingleProfilePage({ id }: { id: string }) {
   const url = createProxyUrl(`holidaze/profiles/${id}`);
   const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues`);
-  const urlThree = createProxyUrl(`holidaze/profiles/${id}/bookings`);
+  // const urlThree = createProxyUrl(`holidaze/profiles/${id}/bookings`);
   const emptyProfile: Profile = {
     name: "",
     email: "",
@@ -29,38 +29,39 @@ export default function SingleProfilePage({ id }: { id: string }) {
   };
   const rating = 2;
   const [profile, setProfile] = useState<Profile>(emptyProfile);
-  const [venues, setVenues] = useState<Venue[]>(null);
-  const [bookings, setBookings] = useState<Venue[]>(null);
+  const [venues, setVenues] = useState<Venue[]>();
+  //  const [bookings, setBookings] = useState<Venue[]>(null);
   useEffect(() => {
-    async function fetchMany() {
-      const [profileData, venueData, bookingData] = await promise.All([
+    (async function fetchMany() {
+      const [profileData, venueData] = await Promise.all([
         fetch(url),
         fetch(urlTwo),
-        fetch(urlThree),
+        //  fetch(urlThree),
       ]);
 
       const data1 = await profileData.json();
       const data2 = await venueData.json();
-      const data3 = await bookingData.json();
+      // const data3 = await bookingData.json();
 
-      setProfile(data1);
-      setVenues(data2);
-    }
+      setProfile(data1.data);
+      setVenues(data2.data);
+      console.log({ data1 }, { data2 });
+    })();
   }, []);
-  let cards = [];
-  if (venues.length > 0) {
-    cards = venues?.data?.map((venue: Venue) => (
+  let cards;
+  if (venues?.length > 0) {
+    cards = venues?.map((venue: Venue) => (
       <VenueCard key={venue.name} {...venue} />
     ));
   }
   const props = { ...profile, rating };
   return (
-    <main>
+    <main className="flex flex-col gap-4 max-w-[1300px] m-auto">
       <section className="flex flex-col">
         <ProfileInfo {...props} />
       </section>
-      <section>
-        <h2>Bio </h2>
+      <section className="bg-zinc-300 p-8 ">
+        <h2 className="font-bold text-2xl">Bio </h2>
         <p>
           {SafeGetProp(
             profile,
@@ -69,8 +70,10 @@ export default function SingleProfilePage({ id }: { id: string }) {
           )}
         </p>
       </section>
-      <section>
-        <h2>Venues</h2>
+      <section className="flex flex-wrap p-8 gap-4 w-full ">
+        <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
+          Venues
+        </h2>
         {cards}
       </section>
     </main>

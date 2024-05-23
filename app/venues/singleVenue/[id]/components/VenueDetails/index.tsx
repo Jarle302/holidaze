@@ -1,5 +1,6 @@
 import { Venue, Booking, Owner } from "@/app/ui/constants/types";
 import boolToYesNo from "@/app/ui/utils/boolToYesNo";
+import Link from "next/link";
 import { CustomLi } from "./CustomLi";
 export const VenueDetails = ({
   venue,
@@ -32,6 +33,11 @@ export const VenueDetails = ({
       <CustomLi index={1} category="Parking">
         {boolToYesNo(parking)}
       </CustomLi>
+      <Link
+        href={`/profile/${venue.owner.name}`}
+        className="flex justify-between px-2">
+        Host <span className="text-red-300 font-bold">{venue.owner.name}</span>
+      </Link>
     </ul>
   );
 };

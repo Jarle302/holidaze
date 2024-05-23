@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { courier } from "@/app/fonts";
 
-type VenueCardProps = Venue & { id: string; bookings: Booking[] };
+type VenueCardProps = Venue & { id: string; bookings?: Booking[] };
 export const VenueCard = ({
   price,
   name,
@@ -31,6 +31,8 @@ export const VenueCard = ({
     tl.current.pause();
   }); // <-- automatically reverted
 
+  const isManagerCard = bookings === undefined;
+
   const [showCalendar, setShowCalendar] = useState(false);
   const buttonStyle = "py-2 w-full bg-zinc-200 text-red-300 font-bold";
   return (
@@ -48,7 +50,8 @@ export const VenueCard = ({
                 {name}
               </h3>
               <p>
-                {description.slice(0, 20) + (description.length > 20?  "...":"")}
+                {description.slice(0, 20) +
+                  (description.length > 20 ? "..." : "")}
               </p>
               <p>
                 <span className="font-bold">{price}</span> a night
@@ -56,17 +59,20 @@ export const VenueCard = ({
               <p></p>
             </div>
           </Link>
-          <button
-            className={buttonStyle}
-            onClick={() => {
-              tl.current?.restart();
-              setShowCalendar((prev) => !prev);
-            }}>
-            See dates
-          </button>
+          
+          {!isManagerCard && (
+            <button
+              className={buttonStyle}
+              onClick={() => {
+                tl.current?.restart();
+                setShowCalendar((prev) => !prev);
+              }}>
+              See dates
+            </button>
+          )}
         </>
       )}
-      {showCalendar && (
+      {showCalendar && typeof bookings !== "undefined" && (
         <>
           <div className="counter-flip">
             <BookingCalendar bookings={bookings} />
