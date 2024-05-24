@@ -49,7 +49,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
     })();
   }, []);
   let cards;
-  if (venues?.length > 0) {
+  if (venues && venues?.length > 0) {
     cards = venues?.map((venue: Venue) => (
       <VenueCard key={venue.name} {...venue} />
     ));
