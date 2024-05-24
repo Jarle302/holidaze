@@ -7,12 +7,15 @@ type cookieObject = {
 };
 
 export const NavProfileInfo = () => {
-  const info = document.cookie.split("; ").reduce((prev, current) => {
-    const [name, value] = current.split("=");
-    console.log(name, value);
-    prev[decodeURIComponent(name)] = decodeURIComponent(value);
-    return prev;
-  }, {} as cookieObject);
+  const info =
+    typeof document !== "undefined"
+      ? document.cookie.split("; ").reduce((prev, current) => {
+          const [name, value] = current.split("=");
+          console.log(name, value);
+          prev[decodeURIComponent(name)] = decodeURIComponent(value);
+          return prev;
+        }, {} as cookieObject)
+      : { name: "no name found", banner: "", avatar: "", email: "" };
 
   const { name, banner, avatar, email } = info;
 
