@@ -7,7 +7,7 @@ import { ProfileInfo } from "./ProfileInfo";
 import { VenueCard } from "@/app/ui/components/VenueCard";
 export default function SingleProfilePage({ id }: { id: string }) {
   const url = createProxyUrl(`holidaze/profiles/${id}`);
-  const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues`);
+  const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues?_owner=true`);
   // const urlThree = createProxyUrl(`holidaze/profiles/${id}/bookings`);
   const emptyProfile: Profile = {
     name: "",

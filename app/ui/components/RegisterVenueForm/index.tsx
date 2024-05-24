@@ -19,17 +19,18 @@ import convertToformState from "../../utils/convertToformState";
 export const RegisterVenueForm = ({
   venueData,
 }: {
-  venueData?: registerVenueData;
+  venueData?: registerVenueData & { id: string };
 }) => {
-  let isEditMode = venueData !== undefined ? true : false;
-
+  let isEditMode = venueData?.name !== undefined ? true : false;
+  let filledFormState = {};
   if (isEditMode) {
-    const emptyFormStateObject = convertToformState(
-      venueData as registerVenueData
-    );
+    filledFormState = convertToformState(venueData as registerVenueData);
   }
+  console.log(isEditMode);
   const [formPage, setFormPage] = useState<formPage>(() => 1);
-  const [formState, setFormState] = useState<FormState>(emptyFormStateObject);
+  const [formState, setFormState] = useState<FormState>(
+    isEditMode ? (filledFormState as FormState) : emptyFormStateObject
+  );
 
   console.log(formState);
 
@@ -55,7 +56,9 @@ export const RegisterVenueForm = ({
 
   return (
     <form className="bg-zinc-300 min-h-[100vh] items-center flex flex-col gap-4">
-      <h1 className="text-3xl text-red-300 font-bold">Register Venue</h1>
+      <h1 className="text-3xl text-red-300 font-bold">
+        {!isEditMode ? "Register Venue" : "Update Venue"}
+      </h1>
       <div className="flex">
         <button
           onClick={handleMiniNavClick(1)}
@@ -240,12 +243,18 @@ export const RegisterVenueForm = ({
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
               onClick={(e) => {
                 e.preventDefault();
-                if (isEditMode) {
-                  registerVenue(convertFormStateToVenue(formState), "PUT");
+                if (isEditMode && venueData && venueData.id) {
+                  console.log("editmode");
+                  registerVenue(
+                    convertFormStateToVenue(formState),
+                    "PUT",
+                    venueData.id
+                  );
+                  return;
                 }
                 registerVenue(convertFormStateToVenue(formState), "POST");
               }}>
-              Register Venue
+              {!isEditMode ? "Register Venue" : "Update Venue"}
             </button>
           </div>
         </div>

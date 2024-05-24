@@ -2,8 +2,12 @@ import { registerVenueData } from "../../constants/types";
 import configureFetch from "../configureFetch";
 import createProxyUrl from "./createProxyUrl";
 
-export default async function registerVenue(formState: registerVenueData,method:string) {
-  const url = createProxyUrl("holidaze/venues");
+export default async function registerVenue(
+  formState: registerVenueData,
+  method: string,
+  id?: string
+) {
+  const url = createProxyUrl(`holidaze/venues${id?"/"+id:""}`);
   const options = configureFetch(method, formState);
   console.log(url);
   const response = await fetch(url, options as RequestInit);

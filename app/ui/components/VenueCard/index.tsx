@@ -1,5 +1,5 @@
 "use client";
-import { Venue, Booking } from "../../constants/types";
+import { Venue, Booking, Owner } from "../../constants/types";
 import { BookingCalendar } from "../BookingCalendar";
 import { useState } from "react";
 import { Carousel } from "../Carousel";
@@ -8,8 +8,26 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { courier } from "@/app/fonts";
+import deleteVenue from "../../utils/api/deleteVenue";
 
-type VenueCardProps = Venue & { id: string; bookings?: Booking[] };
+type cookieObject = {
+  [key: string]: string;
+};
+
+const info = document.cookie.split("; ").reduce((prev, current) => {
+  const [name, value] = current.split("=");
+  console.log(name, value);
+  prev[decodeURIComponent(name)] = decodeURIComponent(value);
+  return prev;
+}, {} as cookieObject);
+
+const { isVenueManager, name: cookieName } = info;
+
+type VenueCardProps = Venue & {
+  id: string;
+  bookings?: Booking[];
+  owner?: Owner;
+};
 export const VenueCard = ({
   price,
   name,
@@ -17,6 +35,7 @@ export const VenueCard = ({
   description,
   media,
   bookings,
+  owner,
 }: VenueCardProps) => {
   gsap.registerPlugin(useGSAP);
   const tl = useRef<gsap.core.Tween>();
@@ -32,7 +51,11 @@ export const VenueCard = ({
   }); // <-- automatically reverted
 
   const isManagerCard = bookings === undefined;
-
+  let userOwnsThisVenue;
+  if (owner) {
+    userOwnsThisVenue = cookieName === owner.name;
+    console.log(userOwnsThisVenue);
+  }
   const [showCalendar, setShowCalendar] = useState(false);
   const buttonStyle = "py-2 w-full bg-zinc-200 text-red-300 font-bold";
   return (
@@ -59,7 +82,7 @@ export const VenueCard = ({
               <p></p>
             </div>
           </Link>
-          
+
           {!isManagerCard && (
             <button
               className={buttonStyle}
@@ -69,6 +92,12 @@ export const VenueCard = ({
               }}>
               See dates
             </button>
+          )}
+          {userOwnsThisVenue && (
+            <div>
+              <button onClick={() => deleteVenue(id)}>Delete</button>
+              <Link href={`/venues/singleVenue/update/${id}`}>Update</Link>
+            </div>
           )}
         </>
       )}

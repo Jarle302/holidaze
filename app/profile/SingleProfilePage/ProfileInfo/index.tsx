@@ -24,7 +24,7 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
     ? "Placeholder avatar image"
     : "Avatar Picture with no alt text supplied";
   return (
-    <div className="flex flex-col h-[350px] relative bg-zinc-3 ">
+    <div className="flex flex-col h-[350px] relative ">
       <div className="flex-1 relative h-2/4">
         <img
           className="w-full h-full object-cover"
@@ -32,8 +32,8 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
           alt={SafeGetProp(props.banner, "alt", fallBackBannerAltText)}
         />
       </div>
-      <div className="bg-zinc-3 flex-1 relative h-2/4 flex pb-[10px] justify-start sm:justify-center z-10 items-end sm:items-start bg-zinc-3">
-        <div className="pl-[40px] sm:pl-[125px]">
+      <div className="bg-zinc-100 w-full flex-1 relative h-2/4 flex pb-[10px] justify-start sm:justify-center z-10 items-end sm:items-start bg-zinc-3">
+        <div className="pl-[40px]  sm:pl-[125px]">
           <h1 className="text-2xl sm:text-[3rem] font-bold">
             {" "}
             {SafeGetProp(props, "name", "Placeholder name")}

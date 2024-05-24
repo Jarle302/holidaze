@@ -3,7 +3,9 @@ import { Venue, Booking } from "../../constants/types";
 type bookings = { bookings: Booking[] };
 
 export const VenueList = async () => {
-  const endpoint = encodeURIComponent("holidaze/venues?_bookings=true");
+  const endpoint = encodeURIComponent(
+    "holidaze/venues?_bookings=true&_owner=true"
+  );
 
   try {
     const response = await fetch(
