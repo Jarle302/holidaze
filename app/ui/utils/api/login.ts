@@ -3,6 +3,15 @@ import { baseUrl } from "../../constants/constants";
 import { cookies } from "next/headers";
 import formDataToObject from "../formDataToObject";
 import boolToYesNo from "../boolToYesNo";
+import { z } from "zod";
+
+const LoginSchema = z.object({
+  email: z
+    .string()
+    .email("wrong email")
+    .endsWith("stud.noroff.no", "email must end with stud.noroff.no"),
+  password: z.string().min(4, "password must atleast be 4 characters long"),
+});
 
 type Image = {
   url: string;
@@ -26,6 +35,9 @@ const url = baseUrl + loginEndpoint;
 
 export default async function loginAction(state: any, formData: FormData) {
   const formDataObject = formDataToObject(formData);
+  if (!LoginSchema.safeParse(formDataObject).success) {
+    return LoginSchema.safeParse(formDataObject).error?.issues;
+  }
   console.log(formData, "formData");
   console.log(formDataObject, "formDataOBJECT");
   try {
