@@ -5,6 +5,7 @@ import SafeGetProp from "@/app/ui/utils/SafeGetProp";
 import { Profile, Venue } from "@/app/ui/constants/types";
 import { ProfileInfo } from "./ProfileInfo";
 import { VenueCard } from "@/app/ui/components/VenueCard";
+import Link from "next/link";
 export default function SingleProfilePage({ id }: { id: string }) {
   const url = createProxyUrl(`holidaze/profiles/${id}`);
   const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues?_owner=true`);
@@ -74,6 +75,13 @@ export default function SingleProfilePage({ id }: { id: string }) {
         <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
           Venues
         </h2>
+        {
+          <Link
+            className="p-3 bg-red-300 text-zinc-800 rounded-lg"
+            href="/venues/registerVenue">
+            Add new Venue
+          </Link>
+        }
         {cards}
       </section>
     </main>

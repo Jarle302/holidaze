@@ -34,7 +34,7 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
       </div>
       <div className="bg-zinc-100 w-full flex-1 relative h-2/4 flex pb-[10px] justify-start sm:justify-center z-10 items-end sm:items-start bg-zinc-3">
         <div className="pl-[40px]  sm:pl-[125px]">
-          <h1 className="text-2xl sm:text-[3rem] font-bold">
+          <h1 className="text-2xl sm:text-[3rem] font-bold sm:my-3">
             {" "}
             {SafeGetProp(props, "name", "Placeholder name")}
           </h1>
@@ -50,7 +50,7 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
         </div>
       </div>
       <img
-        className="absolute top-2/4 translate-y-[-50%] z-20 left-[40px] rounded-full w-[175px] h-[175px]"
+        className="absolute top-2/4 translate-y-[-50%] z-20 left-[40px] rounded-full w-[175px] h-[175px] md:w-[270px] md:h-[270px]"
         src={SafeGetProp({ url: avatarUrl }, "url", "/profilePlaceholder.png")}
         alt={SafeGetProp(props.avatar, "alt", fallBackAvatarAltText)}
       />
