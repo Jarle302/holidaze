@@ -121,3 +121,10 @@ export type registerVenueData = {
   meta: meta;
   location: location;
 };
+
+
+export type VenueCardProps = Venue & {
+  id: string;
+  bookings?: Booking[];
+  owner?: Owner;
+};

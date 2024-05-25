@@ -1,5 +1,5 @@
 "use client";
-import { Venue, Booking, Owner } from "../../constants/types";
+import { VenueCardProps } from "../../constants/types";
 import { BookingCalendar } from "../BookingCalendar";
 import { useState } from "react";
 import { Carousel } from "../Carousel";
@@ -23,11 +23,6 @@ const info = document.cookie.split("; ").reduce((prev, current) => {
 
 const { isVenueManager, name: cookieName } = info;
 
-type VenueCardProps = Venue & {
-  id: string;
-  bookings?: Booking[];
-  owner?: Owner;
-};
 export const VenueCard = ({
   price,
   name,
