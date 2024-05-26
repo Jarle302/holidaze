@@ -1,54 +1,38 @@
 "use client";
-import { AuthInput } from "../AuthInput";
+import { FloatingLabelInput } from "../FloatingLabelInput";
+import { LabeledCheckbox } from "../LabeledCheckbox";
 import registerAction from "../../utils/api/register";
+import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
 import { useFormState, useFormStatus } from "react-dom";
-import Image from "next/image";
-import { useRef } from "react";
+import { ZodIssue } from "zod";
 export const RegisterForm = () => {
   const [state, formAction] = useFormState(registerAction, null);
   return (
     <div className="w-full h-full overflow-hidden">
+      <h1 className="text-red-300">Register</h1>
       <form
         action={formAction}
-        className="h-full flex flex-col-reverse sm:flex-row max-w-[800px] sm:h-[400px] text-zinc-800 bg-white py-3">
-        <div className="min-h-[400px] sm:w-2/5 sm:h-full flex flex-col  justify-around p-8 items-center">
-          <div className=" border-r-1 h-[180px]  w-[180px] border-red-300 ">
-            <img
-              className="h-full w-full "
-              src="/profilePlaceholder.png"
-              alt=""
-            />
-          </div>
-          <AuthInput label="ImageUrl" name="imageUrl" />
-          <button
-            type="submit"
-            className="bg-red-300 rounded-md p-2 self-start ">
-            Register
-          </button>
-        </div>
-        <div className="sm:w-3/5 px-8 sm:border-l-2 h-full border-red-300 flex flex-col justify-between">
-          <Image
-            className="ml-auto  self-start w-[80px]"
-            src="/stampLogo.webp"
-            alt="Holidaze logo, in the form of a post stamp"
-            height={1024}
-            width={1024}
-          />
-          <div className="flex flex-col gap-4 w-[280px] border-b-2 border-red-300 pb-8">
-            <AuthInput label="name" name="name" />
-            <AuthInput label="Email" name="email" type="email" />
-            <AuthInput label="Password" name="password" type="password" />
-            <div className="flex flex-col">
-              <label htmlFor="venueManager">Register as a venue manager</label>
-              <input
-                className="h-[50px]"
-                id="venueManager"
-                name="venueManager"
-                type="checkbox"
-              />
-            </div>
-          </div>
-        </div>
+        className="bg-zinc-300 min-h-[100vh] items-center flex flex-col gap-4">
+        <FloatingLabelInput label="Name" name="name" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="name" />
+        <FloatingLabelInput label="Email" name="email" type="email" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="email" />
+        <FloatingLabelInput label="Password" name="password" type="password" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="password" />
+        <FloatingLabelInput label="Bio" name="bio" type="textbox" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="bio" />
+        <FloatingLabelInput label="Avatar url" name="avatarUrl" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="avatarUrl" />
+        <FloatingLabelInput label="Image description" name="avatarAlt" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="avatarAlt" />
+        <FloatingLabelInput label="Banner url" name="bannerUrl" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="bannerUrl" />
+        <FloatingLabelInput label="image description" name="bannerAlt" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="bannerAlt" />
+        <LabeledCheckbox label="Venue Manager" name="venueManager" />
+        <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="VenueManager" />
+        <button type="submit">Register</button>
+
       </form>
     </div>
   );

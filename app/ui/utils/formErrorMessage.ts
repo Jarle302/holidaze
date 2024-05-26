@@ -1,17 +1,17 @@
-interface ElementWithPath {
-  path: string[];
-  message: string;
-}
+import { ZodIssue } from "zod";
 
-export default function formErrorMessage(
-  arr: ElementWithPath[],
-  inputName: string
-) {
+export default function formErrorMessage(arr: ZodIssue[], inputName: string) {
   if (!arr || !inputName) {
     return false;
   }
-  const errorArray = arr
-    .filter((element) => element?.path[0] === inputName)
-    .map((element) => element.message);
-  return errorArray.join(", ");
+  const errorArray = arr.filter(
+    (element: ZodIssue) => element?.path[0] === inputName
+  );
+
+  if (errorArray.length <= 0) {
+    return "";
+  }
+
+  const mappedErrorArray = errorArray.map((element) => element.message);
+  return mappedErrorArray.join(", ");
 }

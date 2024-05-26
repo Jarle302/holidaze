@@ -2,11 +2,22 @@
 
 import { baseUrl } from "../../constants/constants";
 import formDataToObject from "../formDataToObject";
+import { registerUserSchema } from "../../constants/validationSchemas";
 const endpoint = "auth/register";
 const url = baseUrl + endpoint;
 export default async function registerAction(state: any, formData: FormData) {
-  const reqBody = formDataToObject(formData);
-  const { imageUrl, ...rest } = reqBody;
+  const tempBody = formDataToObject(formData);
+  if (!registerUserSchema.safeParse(tempBody).success) {
+    return registerUserSchema.safeParse(tempBody).error?.issues;
+  }
+  const { avatarUrl, avatarAlt, bannerUrl, bannerAlt, ...rest } = tempBody;
+
+  const requestBody = {
+    ...rest,
+    avatar: { url: avatarUrl, alt: avatarAlt },
+    banner: { url: bannerUrl, alt: bannerAlt },
+  };
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
