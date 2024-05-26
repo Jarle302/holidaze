@@ -47,9 +47,14 @@ export default async function loginAction(state: any, formData: FormData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formDataObject),
+
     });
+
+if(!response.ok){
+  throw new Error(`An error occured: ${response.status}`)
+}
+
     const data: LoginResponse = await response.json();
-    console.log("this is the log", data, "test:", formDataObject);
     const { accessToken: token, ...rest } = data?.data;
     console.log(rest.venueManager, "is venue manager");
     cookies().set({
@@ -97,6 +102,6 @@ export default async function loginAction(state: any, formData: FormData) {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    console.log("this is the error",error);
   }
 }
