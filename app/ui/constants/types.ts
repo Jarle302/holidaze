@@ -19,7 +19,6 @@ export type Profile = {
   };
 };
 
-
 export type Booking = {
   id: string;
   dateFrom: string;
@@ -78,10 +77,10 @@ export type Venue = {
   location: location;
 };
 export type FormState = {
-  name: string;
-  price: number;
-  maxGuests: number;
-  description: string;
+  name: string | undefined;
+  price: number | undefined;
+  maxGuests: number | undefined;
+  description: string | undefined;
   breakfast: boolean;
   wifi: boolean;
   pets: boolean;
@@ -113,15 +112,14 @@ export type Owner = {
 };
 
 export type registerVenueData = {
-  name: string;
-  price: number;
-  maxGuests: number;
-  description: string;
+  name: string | undefined;
+  price: number | undefined;
+  maxGuests: number | undefined;
+  description: string | undefined;
   media: media;
   meta: meta;
   location: location;
 };
-
 
 export type VenueCardProps = Venue & {
   id: string;

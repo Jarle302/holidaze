@@ -5,7 +5,7 @@ export const ValidatedErrorMsg = ({
   errorArray,
   inputName,
 }: {
-  errorArray: ZodIssue[];
+  errorArray?: ZodIssue[];
   inputName: string;
 }) => {
   if (!Array.isArray(errorArray) || errorArray.length <= 0) {
