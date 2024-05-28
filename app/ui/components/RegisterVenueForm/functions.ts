@@ -12,6 +12,8 @@ export function handleChange(
         ? checked
         : type === "number"
         ? parseFloat(value)
-        : value,
+        : value
+        ? value
+        : undefined,
   }));
 }

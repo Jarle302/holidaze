@@ -4,9 +4,15 @@ import { useFormState, useFormStatus } from "react-dom";
 import { AuthInput } from "../AuthInput";
 import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
 import { ZodIssue } from "zod";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const [state, formAction] = useFormState(loginAction, null);
+
+  const router = useRouter();
+  if (state && "data" in state) {
+    router.push("/");
+  }
 
   console.log(state);
   return (

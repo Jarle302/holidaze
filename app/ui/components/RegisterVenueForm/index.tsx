@@ -1,12 +1,7 @@
 "use client";
 import { useState } from "react";
 import { handleChange } from "./functions";
-import {
-  Venue,
-  formPage,
-  FormState,
-  registerVenueData,
-} from "../../constants/types";
+import { formPage, FormState, registerVenueData } from "../../constants/types";
 import { FloatingLabelInput } from "../FloatingLabelInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 import { ImageAdder } from "./ImageAdder";
@@ -15,7 +10,9 @@ import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
 import { ImageList } from "./ImageList";
 import registerVenue from "../../utils/api/registerVenue";
 import convertToformState from "../../utils/convertToformState";
-
+import { RegisterVenueSchema } from "../../constants/validationSchemas";
+import { ZodIssue } from "zod";
+import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
 export const RegisterVenueForm = ({
   venueData,
 }: {
@@ -26,13 +23,13 @@ export const RegisterVenueForm = ({
   if (isEditMode) {
     filledFormState = convertToformState(venueData as registerVenueData);
   }
-  console.log(isEditMode);
+  const [validationErrors, setValidationErrors] = useState<ZodIssue[]>();
   const [formPage, setFormPage] = useState<formPage>(() => 1);
   const [formState, setFormState] = useState<FormState>(
     isEditMode ? (filledFormState as FormState) : emptyFormStateObject
   );
 
-  console.log(formState);
+  console.log(validationErrors);
 
   function handleClick() {
     setFormState((prev) => ({
@@ -77,12 +74,15 @@ export const RegisterVenueForm = ({
             value={formState.name}
             handleChange={(e) => handleChange(e, setFormState)}
           />
+          <ValidatedErrorMsg errorArray={validationErrors} inputName="name" />
           <FloatingLabelInput
             name="price"
             value={formState.price}
             handleChange={(e) => handleChange(e, setFormState)}
             type="number"
           />
+          <ValidatedErrorMsg errorArray={validationErrors} inputName="price" />
+
           <FloatingLabelInput
             name="maxGuests"
             value={formState.maxGuests}
@@ -90,11 +90,20 @@ export const RegisterVenueForm = ({
             label="max guests"
             type="number"
           />
+          <ValidatedErrorMsg
+            errorArray={validationErrors}
+            inputName="maxGuests"
+          />
+
           <FloatingLabelInput
             name="description"
             value={formState.description}
             handleChange={(e) => handleChange(e, setFormState)}
             type="textArea"
+          />
+          <ValidatedErrorMsg
+            errorArray={validationErrors}
+            inputName="description"
           />
 
           <button
@@ -119,6 +128,8 @@ export const RegisterVenueForm = ({
               label="Image url"
               width="m"
             />
+            <ValidatedErrorMsg errorArray={validationErrors} inputName="url" />
+
             <button
               onClick={(e) => {
                 e.preventDefault(), handleClick();
@@ -139,10 +150,19 @@ export const RegisterVenueForm = ({
                 handleChange={(e) => handleChange(e, setFormState)}
                 name="wifi"
               />
+              <ValidatedErrorMsg
+                errorArray={validationErrors}
+                inputName="wifi"
+              />
+
               <LabeledCheckbox
                 value={formState.parking}
                 handleChange={(e) => handleChange(e, setFormState)}
                 name="parking"
+              />
+              <ValidatedErrorMsg
+                errorArray={validationErrors}
+                inputName="parking"
               />
             </div>
             <div className="flex justify-between w-[200px]">
@@ -151,10 +171,19 @@ export const RegisterVenueForm = ({
                 handleChange={(e) => handleChange(e, setFormState)}
                 name="pets"
               />
+              <ValidatedErrorMsg
+                errorArray={validationErrors}
+                inputName="pets"
+              />
+
               <LabeledCheckbox
                 value={formState.breakfast}
                 handleChange={(e) => handleChange(e, setFormState)}
                 name="breakfast"
+              />
+              <ValidatedErrorMsg
+                errorArray={validationErrors}
+                inputName="breakfast"
               />
             </div>
           </div>
@@ -187,6 +216,11 @@ export const RegisterVenueForm = ({
             handleChange={(e) => handleChange(e, setFormState)}
             name="address"
           />
+          <ValidatedErrorMsg
+            errorArray={validationErrors}
+            inputName="address"
+          />
+
           <div className="flex gap-2">
             <FloatingLabelInput
               value={formState.city}
@@ -194,23 +228,36 @@ export const RegisterVenueForm = ({
               name="city"
               width="m"
             />
+            <ValidatedErrorMsg errorArray={validationErrors} inputName="city" />
+
             <FloatingLabelInput
               value={formState.zip}
               handleChange={(e) => handleChange(e, setFormState)}
               name="zip"
               width="s"
             />
+            <ValidatedErrorMsg errorArray={validationErrors} inputName="zip" />
           </div>
           <FloatingLabelInput
             value={formState.country}
             handleChange={(e) => handleChange(e, setFormState)}
             name="country"
           />
+          <ValidatedErrorMsg
+            errorArray={validationErrors}
+            inputName="country"
+          />
+
           <FloatingLabelInput
             value={formState.continent}
             handleChange={(e) => handleChange(e, setFormState)}
             name="continent"
           />
+          <ValidatedErrorMsg
+            errorArray={validationErrors}
+            inputName="continent"
+          />
+
           <div className="flex flex-wrap gap-2">
             <p className="w-full">Coordinates</p>
             <FloatingLabelInput
@@ -220,6 +267,8 @@ export const RegisterVenueForm = ({
               type="number"
               value={formState.lat}
             />
+            <ValidatedErrorMsg errorArray={validationErrors} inputName="lat" />
+
             <FloatingLabelInput
               handleChange={(e) => handleChange(e, setFormState)}
               name="lng"
@@ -227,6 +276,7 @@ export const RegisterVenueForm = ({
               type="number"
               value={formState.lng}
             />
+            <ValidatedErrorMsg errorArray={validationErrors} inputName="lng" />
           </div>
           <div className="flex">
             <button
@@ -244,11 +294,16 @@ export const RegisterVenueForm = ({
               onClick={(e) => {
                 e.preventDefault();
                 if (isEditMode && venueData && venueData.id) {
-                  console.log("editmode");
                   registerVenue(
                     convertFormStateToVenue(formState),
                     "PUT",
                     venueData.id
+                  );
+                  return;
+                }
+                if (!RegisterVenueSchema.safeParse(formState).success) {
+                  setValidationErrors(
+                    RegisterVenueSchema.safeParse(formState).error?.issues
                   );
                   return;
                 }

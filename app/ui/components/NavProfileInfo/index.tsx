@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
+import { LogOutButton } from "../Header/LogOutButton";
 type cookieObject = {
   [key: string]: string;
 };
@@ -15,12 +15,17 @@ export const NavProfileInfo = () => {
           prev[decodeURIComponent(name)] = decodeURIComponent(value);
           return prev;
         }, {} as cookieObject)
-      : { name: "no name found", banner: "", avatar: "", email: "" };
+      : {};
 
-  const { name, banner, avatar, email } = info;
-
+  const { user: tempUser } = info;
   console.log(info);
-
+  let user;
+  let name = "";
+  if (tempUser) {
+    user = JSON.parse(tempUser);
+    name = user.name;
+  }
+  console.log(info);
   return (
     <div>
       {!name ? (
@@ -29,9 +34,12 @@ export const NavProfileInfo = () => {
           <Link href="/auth/login">Login</Link>
         </>
       ) : (
-        <Link href={`/profile/${name}`}>
-          <span className="text-red-300 font-bold">{name}</span>
-        </Link>
+        <>
+          <Link href={`/profile/${name}`}>
+            <span className="text-red-300 font-bold">{name}</span>
+          </Link>
+          <LogOutButton />
+        </>
       )}
     </div>
   );

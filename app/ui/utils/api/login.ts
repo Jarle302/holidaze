@@ -4,13 +4,14 @@ import { cookies } from "next/headers";
 import formDataToObject from "../formDataToObject";
 import boolToYesNo from "../boolToYesNo";
 import { z } from "zod";
+import { json } from "stream/consumers";
 
 const LoginSchema = z.object({
   email: z
     .string()
     .email("wrong email")
     .endsWith("stud.noroff.no", "email must end with stud.noroff.no"),
-  password: z.string().min(4, "password must atleast be 4 characters long"),
+  password: z.string().min(8, "password must be at least be 8 characters long"),
 });
 
 type Image = {
@@ -47,12 +48,11 @@ export default async function loginAction(state: any, formData: FormData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formDataObject),
-
     });
 
-if(!response.ok){
-  throw new Error(`An error occured: ${response.status}`)
-}
+    if (!response.ok) {
+      throw new Error(`An error occurred: ${response.status}`);
+    }
 
     const data: LoginResponse = await response.json();
     const { accessToken: token, ...rest } = data?.data;
@@ -66,42 +66,20 @@ if(!response.ok){
       path: "/",
     });
     cookies().set({
-      name: "name",
-      value: rest?.name,
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    cookies().set({
-      name: "email",
-      value: rest?.email,
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    cookies().set({
-      name: "isVenueManager",
-      value: boolToYesNo(rest?.venueManager),
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    cookies().set({
-      name: "avatar",
-      value: rest?.avatar?.url,
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    cookies().set({
-      name: "banner",
-      value: rest?.banner?.url,
+      name: "user",
+      value: JSON.stringify({
+        name: rest?.name,
+        email: rest?.email,
+        isVenueManager: boolToYesNo(rest?.venueManager),
+        avatar: rest?.avatar,
+        banner: rest?.banner,
+      }),
       sameSite: "none",
       secure: true,
       path: "/",
     });
     return data;
   } catch (error) {
-    console.log("this is the error",error);
+    console.log("this is the error", error);
   }
 }
