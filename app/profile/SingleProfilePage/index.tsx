@@ -79,10 +79,14 @@ export default function SingleProfilePage({ id }: { id: string }) {
   let cards;
   if (profile?.venueManager && venues && venues?.length > 0) {
     cards = venues?.map((venue: VenueWithAllParams) => (
-      <div className="flex-col w-full">
+      <div key={Math.random() + Math.random()} className="flex-col w-full">
         <VenueCard isOwner={isOwnProfile} key={venue.name} {...venue} />
         {isOwnProfile && (
-          <VenueBookings name={venue.name} bookings={venue.bookings} />
+          <VenueBookings
+            key={venue.id + venue.name}
+            name={venue.name}
+            bookings={venue.bookings}
+          />
         )}
       </div>
     ));
@@ -127,7 +131,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
           </h2>{" "}
           {bookings &&
             bookings.map((booking) => {
-              return <UserBooking {...booking} />;
+              return <UserBooking key={booking.id} {...booking} />;
             })}
         </section>
       )}
