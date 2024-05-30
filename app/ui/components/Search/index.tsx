@@ -3,6 +3,7 @@ import { FloatingLabelInput } from "../FloatingLabelInput";
 import { ComponentType } from "react";
 import searchAction from "./searchAction";
 import { useFormState } from "react-dom";
+import { FormButton } from "@/app/ui/components/FormButton";
 import { VenueCardProps } from "../../constants/types";
 export const Search = ({
   className,
@@ -17,7 +18,12 @@ export const Search = ({
     <search className={className}>
       <form action={action}>
         <FloatingLabelInput name="query" label="Search" />
-        <button type="submit">Search</button>
+        <FormButton
+          className="bg-red-300 font-bold text-zinc-800 rounded-md p-1 self-start "
+          defaultText="Search"
+          loadingText="Searching.."
+          loadingStyle="bg-zinc-600 font-bold text-zinc-100 rounded-md p-1 self-start"
+        />
       </form>
       {RenderComponent && state?.data?.length > 0 && (
         <div className="flex flex-wrap items-center w-full">

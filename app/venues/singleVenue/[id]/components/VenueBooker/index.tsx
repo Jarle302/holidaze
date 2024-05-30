@@ -16,8 +16,8 @@ export const VenueBooker = ({
 
   console.log({ bookings });
   return (
-    <div className="flex max-w-[500px] ">
-      <div className="w-3/5">
+    <div className="flex flex-col sm:flex-row max-w-[500px] ">
+      <div className="sm:w-3/5">
         <BookingCalendar
           value={fromTo}
           onChange={setFromTo}
@@ -26,7 +26,7 @@ export const VenueBooker = ({
       </div>
       <form
         ref={formObject}
-        className=" flex flex-col w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
+        className=" flex flex-col sm:w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
         <FloatingLabelInput type={"number"} name="guests" />
         <FloatingLabelInput
           readonly={true}

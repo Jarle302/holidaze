@@ -23,7 +23,7 @@ export const LogOutButton = () => {
             venueManager: false,
             bio: "",
           }));
-        router.push("auth/login");
+        router.push("/auth/login");
       }}>
       Log out
     </button>

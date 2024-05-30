@@ -5,14 +5,22 @@ import { useContext } from "react";
 import { UserBooking } from "@/app/ui/components/UserBooking";
 import { userInfoContext } from "@/app/ui/components/UseInfoProvider";
 import SafeGetProp from "@/app/ui/utils/SafeGetProp";
-import { Profile, Venue, BookingWithVenue } from "@/app/ui/constants/types";
+import {
+  Profile,
+  Venue,
+  BookingWithVenue,
+  VenueWithAllParams,
+} from "@/app/ui/constants/types";
 import { ProfileInfo } from "./ProfileInfo";
 import { VenueCard } from "@/app/ui/components/VenueCard";
 import Link from "next/link";
+import { VenueBookings } from "@/app/ui/components/VenueBookings";
 export default function SingleProfilePage({ id }: { id: string }) {
   const tempUser = useContext(userInfoContext);
   const url = createProxyUrl(`holidaze/profiles/${id}`);
-  const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues?_owner=true`);
+  const urlTwo = createProxyUrl(
+    `holidaze/profiles/${id}/venues?_owner=true&_bookings=true`
+  );
   const urlThree = createProxyUrl(
     `holidaze/profiles/${id}/bookings?_owner=true&_venue=true`
   );
@@ -38,7 +46,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
   const rating = 2; //FIX
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const [profile, setProfile] = useState<Profile>(emptyProfile);
-  const [venues, setVenues] = useState<Venue[]>();
+  const [venues, setVenues] = useState<VenueWithAllParams[]>();
   const [bookings, setBookings] = useState<BookingWithVenue[]>();
   useEffect(() => {
     (async function fetchMany() {
@@ -70,8 +78,13 @@ export default function SingleProfilePage({ id }: { id: string }) {
   }, [profile]);
   let cards;
   if (profile?.venueManager && venues && venues?.length > 0) {
-    cards = venues?.map((venue: Venue) => (
-      <VenueCard key={venue.name} {...venue} />
+    cards = venues?.map((venue: VenueWithAllParams) => (
+      <div className="flex-col w-full">
+        <VenueCard isOwner={isOwnProfile} key={venue.name} {...venue} />
+        {isOwnProfile && (
+          <VenueBookings name={venue.name} bookings={venue.bookings} />
+        )}
+      </div>
     ));
   }
   const props = { ...profile, rating };
@@ -90,7 +103,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
           )}
         </p>
       </section>
-      {isOwnProfile && (
+      {isOwnProfile && tempUser?.userInfo?.venueManager && (
         <Link
           className="p-3 bg-red-300 text-zinc-800 rounded-lg"
           href="/venues/registerVenue">
@@ -98,7 +111,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
         </Link>
       )}
       {profile.venueManager && (
-        <section className="flex flex-wrap p-8 gap-4 w-full ">
+        <section className="flex flex-wrap gap-4 w-full ">
           <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
             {isOwnProfile ? "Your venues" : "Venues"}
           </h2>

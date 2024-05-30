@@ -1,6 +1,7 @@
 "use client";
 import loginAction from "../../utils/api/login";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
+import { FormButton } from "@/app/ui/components/FormButton";
 import { AuthInput } from "../AuthInput";
 import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
 import { ZodIssue } from "zod";
@@ -41,9 +42,12 @@ export const LoginForm = () => {
         inputName="password"
       />
 
-      <button type="submit" className="bg-red-300 rounded-md p-1 self-start ">
-        Login
-      </button>
+      <FormButton
+        className="bg-red-300 font-bold text-zinc-800 rounded-md p-1 self-start "
+        defaultText="Login"
+        loadingText="Logging in.."
+        loadingStyle="bg-zinc-600 font-bold text-zinc-100 rounded-md p-1 self-start"
+      />
     </form>
   );
 };

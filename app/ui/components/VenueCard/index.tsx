@@ -10,19 +10,6 @@ import Link from "next/link";
 import { courier } from "@/app/fonts";
 import deleteVenue from "../../utils/api/deleteVenue";
 
-type cookieObject = {
-  [key: string]: string;
-};
-
-const info = document.cookie.split("; ").reduce((prev, current) => {
-  const [name, value] = current.split("=");
-  console.log(name, value);
-  prev[decodeURIComponent(name)] = decodeURIComponent(value);
-  return prev;
-}, {} as cookieObject);
-
-const { isVenueManager, name: cookieName } = info;
-
 export const VenueCard = ({
   price,
   name,
@@ -31,7 +18,8 @@ export const VenueCard = ({
   media,
   bookings,
   owner,
-}: VenueCardProps) => {
+  isOwner = false,
+}: VenueCardProps & { isOwner?: boolean }) => {
   gsap.registerPlugin(useGSAP);
   const tl = useRef<gsap.core.Tween>();
   const card = useRef<HTMLDivElement>(null);
@@ -45,12 +33,6 @@ export const VenueCard = ({
     tl.current.pause();
   }); // <-- automatically reverted
 
-  const isManagerCard = bookings === undefined;
-  let userOwnsThisVenue;
-  if (owner) {
-    userOwnsThisVenue = cookieName === owner.name;
-    console.log(userOwnsThisVenue);
-  }
   const [showCalendar, setShowCalendar] = useState(false);
   const buttonStyle = "py-2 w-full bg-zinc-200 text-red-300 font-bold";
   return (
@@ -78,7 +60,7 @@ export const VenueCard = ({
             </div>
           </Link>
 
-          {!isManagerCard && (
+          {!isOwner && (
             <button
               className={buttonStyle}
               onClick={() => {
@@ -88,7 +70,7 @@ export const VenueCard = ({
               See dates
             </button>
           )}
-          {userOwnsThisVenue && (
+          {isOwner && (
             <div>
               <button onClick={() => deleteVenue(id)}>Delete</button>
               <Link href={`/venues/singleVenue/update/${id}`}>Update</Link>

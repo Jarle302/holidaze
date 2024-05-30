@@ -40,7 +40,6 @@ export type Booking = {
 
 export type BookingWithVenue = Booking & { venue: Venue };
 
-
 type Banner = {
   url: string;
   alt: string;
@@ -146,4 +145,27 @@ export type UserInfo = {
   banner: Image;
   bio: string;
   venueManager: false;
+};
+
+export type VenueWithAllParams = {
+  id: string;
+  name: string;
+  description: string;
+  media: Image[];
+  price: number;
+  maxGuests: number;
+  rating: number;
+  created: string;
+  updated: string;
+  meta: Meta;
+  location: location;
+  owner: Owner;
+  bookings: Booking[];
+};
+
+type Meta = {
+  wifi: boolean;
+  parking: boolean;
+  breakfast: boolean;
+  pets: boolean;
 };

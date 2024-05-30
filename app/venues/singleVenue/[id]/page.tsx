@@ -3,6 +3,7 @@ import { baseUrl } from "@/app/ui/constants/constants";
 import { Carousel } from "@/app/ui/components/Carousel";
 import { VenueDetails } from "./components/VenueDetails";
 import { VenueBooker } from "./components/VenueBooker";
+import { UseClientVenueBookings } from "./components/UseClientVenueBookings";
 export default async function Page({ params }: { params: { id: string } }) {
   const data: { data: Venue & { owner: Owner; bookings: Booking[] } } =
     await fetch(
@@ -12,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   console.log({ data });
 
-  const { name, description, media, bookings } = data.data || "";
+  const { name, description, media, bookings, owner } = data.data || "";
 
   return (
     <main className="bg-zinc-200 md:p-[40px] p-[20px] flex flex-wrap gap-5">
@@ -27,6 +28,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <VenueBooker id={params.id} bookings={bookings} />
         <VenueDetails venue={data.data} />
       </div>
+      <UseClientVenueBookings bookings={bookings} owner={owner?.name} />
     </main>
   );
 }
