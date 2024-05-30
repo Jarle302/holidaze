@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import formDataToObject from "../formDataToObject";
 import boolToYesNo from "../boolToYesNo";
 import { z } from "zod";
-import { json } from "stream/consumers";
 
 const LoginSchema = z.object({
   email: z
@@ -25,6 +24,7 @@ type LoginResponse = {
     email: string;
     avatar: Image;
     banner: Image;
+    bio: string;
     accessToken: string;
     venueManager: boolean;
   };
@@ -39,8 +39,7 @@ export default async function loginAction(state: any, formData: FormData) {
   if (!LoginSchema.safeParse(formDataObject).success) {
     return LoginSchema.safeParse(formDataObject).error?.issues;
   }
-  console.log(formData, "formData");
-  console.log(formDataObject, "formDataOBJECT");
+
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -56,7 +55,6 @@ export default async function loginAction(state: any, formData: FormData) {
 
     const data: LoginResponse = await response.json();
     const { accessToken: token, ...rest } = data?.data;
-    console.log(rest.venueManager, "is venue manager");
     cookies().set({
       name: "token",
       value: token,
@@ -78,8 +76,8 @@ export default async function loginAction(state: any, formData: FormData) {
       secure: true,
       path: "/",
     });
-    return data;
+    return rest;
   } catch (error) {
-    console.log("this is the error", error);
+    console.log("this is the error", { error });
   }
 }

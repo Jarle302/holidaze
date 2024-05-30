@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { kadwa } from "./fonts";
+import { UserInfoProvider } from "./ui/components/UseInfoProvider";
 import { Header } from "./ui/components/Header";
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${kadwa.className} bg--gradient`}>
-        <Header />
-        {children}
+        <UserInfoProvider>
+          <Header />
+          {children}
+        </UserInfoProvider>
       </body>
     </html>
   );

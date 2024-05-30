@@ -1,4 +1,3 @@
-import { describe } from "node:test";
 import { z } from "zod";
 
 export const registerUserSchema = z.object({
@@ -7,12 +6,17 @@ export const registerUserSchema = z.object({
     required_error: "Name is required",
   }),
   email: z
-    .string()
-    .email("wrong email")
+    .string({
+      invalid_type_error: "Email must consist of letters",
+      required_error: "Email is required",
+    })
+    .email("Please enter a valid email, wrong email or password")
     .endsWith("stud.noroff.no", "email must end with stud.noroff.no"),
-  password: z.string().min(8, "password must be at least 4 characters"),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(8, "password must be at least 8 characters"),
   bio: z.string().max(159, "bio must be less than 160 characters"),
-  avatarUrl: z.string().url("must be a valid url").optional(),
+  avatarUrl: z.string().url("must be a valid url"),
   avatarAlt: z
     .string()
     .max(119, "bio must be less than 120 characters")
@@ -69,7 +73,6 @@ export const RegisterVenueSchema = z.object({
   parking: z.boolean().default(false).optional(),
   pets: z.boolean().default(false).optional(),
   breakfast: z.boolean().default(false).optional(),
-  url: z.string().url("Must be a valid accessible url").nullish(),
   alt: z
     .string({ invalid_type_error: "Description must consist of letters" })
     .nullish(),
@@ -82,7 +85,9 @@ export const RegisterVenueSchema = z.object({
   continent: z
     .string({ invalid_type_error: "Continent must consist of letters" })
     .nullish(),
-  zip: z.string({ invalid_type_error: "Zip must consist of letters" }).nullish(),
+  zip: z
+    .string({ invalid_type_error: "Zip must consist of letters" })
+    .nullish(),
   lat: z
     .number()
     .min(-90, "Latitude must be between -90 and 90")
@@ -94,3 +99,5 @@ export const RegisterVenueSchema = z.object({
     .max(90, "Longitude must be between -90 and 90")
     .nullish(),
 });
+
+export const addImage = z.string({}).url("must be a valid url");

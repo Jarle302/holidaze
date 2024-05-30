@@ -1,15 +1,21 @@
 "use client";
 import createProxyUrl from "@/app/ui/utils/api/createProxyUrl";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserBooking } from "@/app/ui/components/UserBooking";
+import { userInfoContext } from "@/app/ui/components/UseInfoProvider";
 import SafeGetProp from "@/app/ui/utils/SafeGetProp";
-import { Profile, Venue } from "@/app/ui/constants/types";
+import { Profile, Venue, BookingWithVenue } from "@/app/ui/constants/types";
 import { ProfileInfo } from "./ProfileInfo";
 import { VenueCard } from "@/app/ui/components/VenueCard";
 import Link from "next/link";
 export default function SingleProfilePage({ id }: { id: string }) {
+  const tempUser = useContext(userInfoContext);
   const url = createProxyUrl(`holidaze/profiles/${id}`);
   const urlTwo = createProxyUrl(`holidaze/profiles/${id}/venues?_owner=true`);
-  // const urlThree = createProxyUrl(`holidaze/profiles/${id}/bookings`);
+  const urlThree = createProxyUrl(
+    `holidaze/profiles/${id}/bookings?_owner=true&_venue=true`
+  );
   const emptyProfile: Profile = {
     name: "",
     email: "",
@@ -28,29 +34,42 @@ export default function SingleProfilePage({ id }: { id: string }) {
       bookings: 0,
     },
   };
-  const rating = 2;
+
+  const rating = 2; //FIX
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
   const [profile, setProfile] = useState<Profile>(emptyProfile);
   const [venues, setVenues] = useState<Venue[]>();
-  //  const [bookings, setBookings] = useState<Venue[]>(null);
+  const [bookings, setBookings] = useState<BookingWithVenue[]>();
   useEffect(() => {
     (async function fetchMany() {
-      const [profileData, venueData] = await Promise.all([
+      const [profileData, venueData, bookingData] = await Promise.all([
         fetch(url),
         fetch(urlTwo),
-        //  fetch(urlThree),
+        fetch(urlThree),
       ]);
 
       const data1 = await profileData.json();
       const data2 = await venueData.json();
-      // const data3 = await bookingData.json();
+      const data3 = await bookingData.json();
 
       setProfile(data1.data);
       setVenues(data2.data);
-      console.log({ data1 }, { data2 });
+      setBookings(data3.data);
+      console.log({ data1 }, { data2 }, { data3 });
     })();
   }, []);
+  useEffect(() => {
+    console.log(tempUser, profile.name, "temp user profile");
+    let user;
+    if (tempUser !== undefined && profile.name) {
+      user = tempUser;
+
+      user?.userInfo.name === profile.name && setIsOwnProfile(true);
+      console.log(isOwnProfile, "isOWN PROFILE????");
+    }
+  }, [profile]);
   let cards;
-  if (venues && venues?.length > 0) {
+  if (profile?.venueManager && venues && venues?.length > 0) {
     cards = venues?.map((venue: Venue) => (
       <VenueCard key={venue.name} {...venue} />
     ));
@@ -71,19 +90,34 @@ export default function SingleProfilePage({ id }: { id: string }) {
           )}
         </p>
       </section>
-      <section className="flex flex-wrap p-8 gap-4 w-full ">
-        <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
-          Venues
-        </h2>
-        {
-          <Link
-            className="p-3 bg-red-300 text-zinc-800 rounded-lg"
-            href="/venues/registerVenue">
-            Add new Venue
-          </Link>
-        }
-        {cards}
-      </section>
+      {isOwnProfile && (
+        <Link
+          className="p-3 bg-red-300 text-zinc-800 rounded-lg"
+          href="/venues/registerVenue">
+          Add new Venue
+        </Link>
+      )}
+      {profile.venueManager && (
+        <section className="flex flex-wrap p-8 gap-4 w-full ">
+          <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
+            {isOwnProfile ? "Your venues" : "Venues"}
+          </h2>
+
+          {cards}
+        </section>
+      )}
+      {isOwnProfile && (
+        <section className="flex flex-col gap-2">
+          <h2 className="text-2xl font-bold text-red-300 ">
+            {" "}
+            Your Upcoming bookings
+          </h2>{" "}
+          {bookings &&
+            bookings.map((booking) => {
+              return <UserBooking {...booking} />;
+            })}
+        </section>
+      )}
     </main>
   );
 }

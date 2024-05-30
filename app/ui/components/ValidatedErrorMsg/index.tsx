@@ -12,5 +12,11 @@ export const ValidatedErrorMsg = ({
     return;
   }
   const errorMsg = formErrorMessage(errorArray, inputName);
-  return <>{errorMsg && <p>{errorMsg}</p>}</>;
+  return (
+    <>
+      {errorMsg && (
+        <p className="text-rose-600 font-bold bg-zinc-100">{errorMsg}</p>
+      )}
+    </>
+  );
 };

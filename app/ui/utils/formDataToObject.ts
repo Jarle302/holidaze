@@ -6,6 +6,8 @@ export default function formDataToObject(formData: FormData) {
       formDataObject[key] = true;
     } else if (value === "false" || value === "off") {
       formDataObject[key] = false;
+    } else if (value === "") {
+      formDataObject[key] = undefined;
     } else {
       formDataObject[key] = value as string | number;
     }

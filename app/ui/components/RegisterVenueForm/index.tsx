@@ -10,7 +10,10 @@ import convertFormStateToVenue from "../../utils/ConvertFormStateToVenue";
 import { ImageList } from "./ImageList";
 import registerVenue from "../../utils/api/registerVenue";
 import convertToformState from "../../utils/convertToformState";
-import { RegisterVenueSchema } from "../../constants/validationSchemas";
+import {
+  RegisterVenueSchema,
+  addImage,
+} from "../../constants/validationSchemas";
 import { ZodIssue } from "zod";
 import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
 export const RegisterVenueForm = ({
@@ -132,7 +135,14 @@ export const RegisterVenueForm = ({
 
             <button
               onClick={(e) => {
-                e.preventDefault(), handleClick();
+                e.preventDefault();
+                if (!addImage.safeParse(formState.url).success) {
+                  setValidationErrors(
+                    addImage.safeParse(formState.url).error?.issues
+                  );
+                  return;
+                }
+                handleClick();
               }}
               className="bg-zinc-500 text-white  p-2 rounded-lg">
               Add

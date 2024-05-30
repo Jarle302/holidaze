@@ -38,7 +38,15 @@ export type Booking = {
   };
 };
 
+export type BookingWithVenue = Booking & { venue: Venue };
+
+
 type Banner = {
+  url: string;
+  alt: string;
+};
+
+type Image = {
   url: string;
   alt: string;
 };
@@ -125,4 +133,17 @@ export type VenueCardProps = Venue & {
   id: string;
   bookings?: Booking[];
   owner?: Owner;
+};
+
+export type cookieObject = {
+  [key: string]: string;
+};
+
+export type UserInfo = {
+  name: string;
+  email: string;
+  avatar: Image;
+  banner: Image;
+  bio: string;
+  venueManager: false;
 };
