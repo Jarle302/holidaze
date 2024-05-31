@@ -10,6 +10,9 @@ export default async function bookVenueAction(formData: FormData) {
   const temp = formDataToObject(formData);
   const dateFrom = new Date(String(temp.dateFrom));
   const dateTo = new Date(String(temp.dateTo));
+  if (!temp.guests) {
+    return;
+  }
   const requestBody: {
     dateFrom: string;
     dateTo: string;
