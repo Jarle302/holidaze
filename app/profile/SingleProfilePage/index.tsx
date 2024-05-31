@@ -1,13 +1,15 @@
 "use client";
 import createProxyUrl from "@/app/ui/utils/api/createProxyUrl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
 import { UserBooking } from "@/app/ui/components/UserBooking";
 import { userInfoContext } from "@/app/ui/components/UseInfoProvider";
 import SafeGetProp from "@/app/ui/utils/SafeGetProp";
+import { AvatarUpdater } from "@/app/ui/components/AvatarUpdater";
+import { useFormState } from "react-dom";
+import UpdateAvatarAction from "@/app/ui/utils/api/UpdateAvatar";
 import {
   Profile,
-  Venue,
   BookingWithVenue,
   VenueWithAllParams,
 } from "@/app/ui/constants/types";
@@ -16,6 +18,7 @@ import { VenueCard } from "@/app/ui/components/VenueCard";
 import Link from "next/link";
 import { VenueBookings } from "@/app/ui/components/VenueBookings";
 export default function SingleProfilePage({ id }: { id: string }) {
+  const [state, action] = useFormState(UpdateAvatarAction, null);
   const tempUser = useContext(userInfoContext);
   const url = createProxyUrl(`holidaze/profiles/${id}`);
   const urlTwo = createProxyUrl(
@@ -67,7 +70,6 @@ export default function SingleProfilePage({ id }: { id: string }) {
     })();
   }, []);
   useEffect(() => {
-    console.log(tempUser, profile.name, "temp user profile");
     let user;
     if (tempUser !== undefined && profile.name) {
       user = tempUser;
@@ -92,10 +94,30 @@ export default function SingleProfilePage({ id }: { id: string }) {
     ));
   }
   const props = { ...profile, rating };
+  const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <main className="flex flex-col gap-4 max-w-[1300px] m-auto">
       <section className="flex flex-col">
         <ProfileInfo {...props} />
+        {isOwnProfile && (
+          <>
+            {" "}
+            <button onClick={() => modalRef.current?.showModal()}>
+              Change avatar
+            </button>
+            <dialog
+              ref={modalRef}
+              className="p-2 h-[300px] bg-zinc-300 rounded-lg border border-4 border-zinc-800">
+              <button onClick={() => modalRef.current?.close()}>Close</button>
+
+              <AvatarUpdater
+                name={profile.name}
+                updateAvatar={action}
+                errorArray={state}
+              />
+            </dialog>
+          </>
+        )}
       </section>
       <section className="bg-zinc-300 p-8 ">
         <h2 className="font-bold text-2xl">Bio </h2>

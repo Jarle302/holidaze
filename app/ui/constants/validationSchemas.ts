@@ -101,3 +101,8 @@ export const RegisterVenueSchema = z.object({
 });
 
 export const addImage = z.string({}).url("must be a valid url");
+
+export const UpdateAvatarZod = z.object({
+  alt: z.string().optional(),
+  url: z.string().url("must be a valid url"),
+});

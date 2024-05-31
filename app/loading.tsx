@@ -1,3 +1,7 @@
 export default function Loading() {
-  return <h1>LOADING......</h1>;
+  return (
+    <main className="h-[100vh] w-full flex items-center justify-center">
+      <span class="loader"></span>{" "}
+    </main>
+  );
 }
