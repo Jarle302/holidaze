@@ -104,7 +104,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
             <>
               {" "}
               <button
-                className="p-2 bg-zinc-200 text-red-300 font-bold border border-bg-red-300 border-2 rounded-lg"
+                className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
                 onClick={() => modalRef.current?.showModal()}>
                 Change avatar
               </button>

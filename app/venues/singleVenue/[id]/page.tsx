@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     <main className="bg-zinc-200 md:p-[40px] p-[20px] flex flex-wrap gap-5">
       <h1 className="text-[50px]  w-full text-red-300 font-bold">{name}</h1>
       <div className="flex flex-col max-w-[500px] gap-5">
-        <div className="p-3 bg-white max-h-max max-w-max">
+        <div className="p-3 bg-white sm:w-[500px] sm:h-[500px] h-[320px] w-[280px] ">
           <Carousel fitToContainer={true} media={media} />
         </div>
         <p>{description}</p>

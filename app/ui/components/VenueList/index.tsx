@@ -4,7 +4,7 @@ type bookings = { bookings: Booking[] };
 
 export const VenueList = async () => {
   const endpoint = encodeURIComponent(
-    "holidaze/venues?_bookings=true&_owner=true"
+    "holidaze/venues?_bookings=true&_owner=true&sort=created&sortOrder=desc"
   );
 
   try {

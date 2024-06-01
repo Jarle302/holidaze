@@ -15,8 +15,8 @@ export const Search = ({
   const [state, action] = useFormState(searchAction, null);
   console.log(state);
   return (
-    <search className={" w-full"}>
-      <form className="flex flex-col" action={action}>
+    <search className={" w-full gap-4"}>
+      <form className="flex flex-col mb-4" action={action}>
         <label htmlFor="query">Search</label>
         <div className="flex">
           <input name="query" id="query" />
@@ -30,7 +30,7 @@ export const Search = ({
         </div>
       </form>
       {RenderComponent && state?.data?.length > 0 && (
-        <div className="flex flex-wrap items-center w-full">
+        <div className="flex flex-wrap gap-4 items-center w-full">
           {state.data.map((venue: VenueCardProps) => (
             <RenderComponent {...venue} key={venue.id} />
           ))}

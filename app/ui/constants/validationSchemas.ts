@@ -17,8 +17,8 @@ export const registerUserSchema = z.object({
   password: z
     .string({ required_error: "Password is required" })
     .min(8, "password must be at least 8 characters"),
-  bio: z.string().max(159, "bio must be less than 160 characters"),
-  avatarUrl: z.string().url("must be a valid url"),
+  bio: z.string().max(159, "bio must be less than 160 characters").optional(),
+  avatarUrl: z.string().url("must be a valid url").optional(),
   avatarAlt: z
     .string()
     .max(119, "bio must be less than 120 characters")
