@@ -17,10 +17,10 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
   }
 
   console.log({ props });
-  const fallBackBannerAltText = !props.banner.url
+  const fallBackBannerAltText = !props?.banner?.url
     ? "blue sky with clouds"
     : "banner picture with no alt text supplied";
-  const fallBackAvatarAltText = !props.avatar.url
+  const fallBackAvatarAltText = !props?.avatar?.url
     ? "Placeholder avatar image"
     : "Avatar Picture with no alt text supplied";
   return (

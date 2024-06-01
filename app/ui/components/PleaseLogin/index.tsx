@@ -20,13 +20,13 @@ export const PleaseLogin = ({ message }: { message: string }) => {
           <div className=" p-3 flex flex-col justify-evenly  backdrop-blur-xl font-bold text-zinc-800">
             <p>{message}</p>
             <Link
-              className="text-xl font-bold text-red-300"
+              className="text-xl font-bold text-slate-700"
               href={"/auth/login"}>
               Login
             </Link>
             <span>OR</span>
             <Link
-              className="text-xl font-bold text-zinc-800"
+              className="text-xl font-bold text-slate-700"
               href={"/auth/register"}>
               Register
             </Link>

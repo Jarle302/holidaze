@@ -15,7 +15,9 @@ export const ValidatedErrorMsg = ({
   return (
     <>
       {errorMsg && (
-        <p className="text-rose-600 font-bold bg-zinc-100">{errorMsg}</p>
+        <p className="text-red-300 p-1 rounded-md font-bold bg-slate-700">
+          {errorMsg}
+        </p>
       )}
     </>
   );

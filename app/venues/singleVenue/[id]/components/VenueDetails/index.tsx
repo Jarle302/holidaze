@@ -2,6 +2,7 @@ import { Venue, Booking, Owner } from "@/app/ui/constants/types";
 import boolToYesNo from "@/app/ui/utils/boolToYesNo";
 import Link from "next/link";
 import { CustomLi } from "./CustomLi";
+import { PleaseLogin } from "@/app/ui/components/PleaseLogin";
 export const VenueDetails = ({
   venue,
 }: {
@@ -35,8 +36,10 @@ export const VenueDetails = ({
       </CustomLi>
       <Link
         href={`/profile/${venue.owner.name}`}
-        className="flex justify-between px-2">
-        Host <span className="text-red-300 font-bold">{venue.owner.name}</span>
+        className="flex justify-between px-2 relative">
+        Host{" "}
+        <span className="text-slate-700 font-bold">{venue.owner.name}</span>
+        <PleaseLogin message="Log in to view managers profile" />
       </Link>
     </ul>
   );

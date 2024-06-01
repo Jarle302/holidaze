@@ -71,7 +71,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
   }, []);
   useEffect(() => {
     let user;
-    if (tempUser !== undefined && profile.name) {
+    if (tempUser !== undefined && profile?.name) {
       user = tempUser;
 
       user?.userInfo.name === profile.name && setIsOwnProfile(true);
@@ -141,7 +141,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
         </p>
       </section>
 
-      {profile.venueManager && (
+      {profile?.venueManager && (
         <section className="flex flex-wrap gap-4 w-full ">
           <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
             {isOwnProfile ? "Your venues" : "Venues"}

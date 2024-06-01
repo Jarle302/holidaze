@@ -16,7 +16,9 @@ export const NavProfileInfo = () => {
     <nav>
       <ul className="flex gap-4">
         <li>
-          <Link className={path === `/` ? "text--green flex" : "flex"} href="/">
+          <Link
+            className={path === `/` ? "text--green bg-zinc-600 rounded-lg p-1 flex" : "flex"}
+            href="/">
             <IoHomeSharp />
             Home
           </Link>
@@ -25,14 +27,18 @@ export const NavProfileInfo = () => {
           <>
             <li>
               <Link
-                className={path === "/auth/register" ? "text--green" : ""}
+                className={
+                  path === "/auth/register" ? "text--green bg-zinc-600 p-1" : ""
+                }
                 href="/auth/register">
                 Register
               </Link>
             </li>
             <li>
               <Link
-                className={path === "/auth/login" ? "text--green" : ""}
+                className={
+                  path === "/auth/login" ? "text--green bg-zinc-600" : ""
+                }
                 href="/auth/login">
                 Login
               </Link>
@@ -44,7 +50,7 @@ export const NavProfileInfo = () => {
               <Link
                 className={
                   path === `/profile/${user?.userInfo?.name}`
-                    ? "text--green flex"
+                    ? "text--green bg-zinc-600 rounded-lg p-1 flex"
                     : "flex text-red-300 font-bold"
                 }
                 href={`/profile/${user?.userInfo?.name}`}>
