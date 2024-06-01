@@ -43,10 +43,10 @@ export const LoginForm = () => {
       />
 
       <FormButton
-        className="bg-red-300 font-bold text-zinc-800 rounded-md p-1 self-start "
         defaultText="Login"
         loadingText="Logging in.."
-        loadingStyle="bg-zinc-600 font-bold text-zinc-100 rounded-md p-1 self-start"
+        className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
+        loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
       />
     </form>
   );

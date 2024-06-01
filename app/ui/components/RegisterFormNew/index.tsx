@@ -9,8 +9,8 @@ import { ZodIssue } from "zod";
 export const RegisterForm = () => {
   const [state, formAction] = useFormState(registerAction, null);
   return (
-    <div className="bg-zinc-300  w-full items-center justify-center">
-      <h1 className="text-red-300">Register</h1>
+    <div className="bg-zinc-300  w-full items-center justify-center p-5">
+      <h1 className="text-red-300 m-5 font-bold text-2xl">Register</h1>
       <form action={formAction} className="flex flex-col items-center">
         <div className="flex flex-wrap gap-4">
           <div className="flex flex-col gap-4">
@@ -67,11 +67,12 @@ export const RegisterForm = () => {
             />
           </div>
         </div>
+
         <FormButton
           defaultText="Register"
           loadingText="Registering"
-          className="p-3 bg-red-300 font-bold text-zinc-800 rounded-lg"
-          loadingStyle="p-3 bg-zinc-200 font-bold text-zinc-800 rounded-lg"
+          className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
+          loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
         />
       </form>
     </div>
