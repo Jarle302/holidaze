@@ -43,12 +43,14 @@ export const Carousel = ({
       {media?.length > 1 && (
         <div className="flex justify-between absolute w-full top-2/4 translate-y-[-50%]">
           <button
+            aria-label="Previous image"
             className={buttonClasses}
             onClick={() => incrementDecrement(false)}>
             <GrPrevious />
           </button>
 
           <button
+            aria-label="Next image"
             className={buttonClasses}
             onClick={() => incrementDecrement()}>
             <GrNext />
