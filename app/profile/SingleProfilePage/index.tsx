@@ -96,7 +96,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
   const props = { ...profile, rating };
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
-    <main className="flex flex-col gap-4 max-w-[1300px] m-auto">
+    <main className="flex flex-col gap-4 max-w-[1300px] m-auto bg-zinc-100">
       <section className="flex flex-col">
         <ProfileInfo {...props} />
         <div className="p-8 flex gap-4">
