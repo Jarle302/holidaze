@@ -34,7 +34,7 @@ export const VenueCard = ({
   }); // <-- automatically reverted
 
   const [showCalendar, setShowCalendar] = useState(false);
-  const buttonStyle = "py-2 w-full bg-zinc-200 text-red-800 font-bold";
+  const buttonStyle = "py-2 w-full bg-zinc-200 text-zinc-800 font-bold";
   return (
     <div
       ref={card}
