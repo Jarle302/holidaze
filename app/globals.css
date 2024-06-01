@@ -68,7 +68,11 @@ body {
   );
 }*/
 .bg--gradient {
-  background: #ACE8C9;
+  background: #ace8c9;
+}
+
+.text--green {
+  color: #ace8c9;
 }
 
 .bg--login {
