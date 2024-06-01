@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+//MOST OF THESE TYPES ARE EITHER COPIED FROM OR INSPIRED BY  THE NOROFF API
+
 export const registerUserSchema = z.object({
   name: z.string({
     invalid_type_error: "Name must consist of letters",
@@ -103,6 +105,31 @@ export const RegisterVenueSchema = z.object({
 export const addImage = z.string({}).url("must be a valid url");
 
 export const UpdateAvatarZod = z.object({
-  alt: z.string().optional(),
-  url: z.string().url("must be a valid url"),
+  alt: z.string().max(120).optional(),
+  url: z
+    .string({ required_error: "Url is required" })
+    .url("must be a valid url")
+    .min(1),
+});
+
+export const createBookingSchema = z.object({
+  dateFrom: z.preprocess((arg) => {
+    if (typeof arg === "string" || arg instanceof Date) return new Date(arg);
+  }, z.date({ required_error: "dateFrom is required" })),
+  dateTo: z.preprocess((arg) => {
+    if (typeof arg === "string" || arg instanceof Date) return new Date(arg);
+  }, z.date({ required_error: "dateTo is required" })),
+  guests: z
+    .number({
+      invalid_type_error: "Guests must be a number",
+    })
+    .int("Guests must be an integer")
+    .min(1, "Guests must be at least 1")
+    .max(100, "Guests cannot exceed 100"),
+  venueId: z
+    .string({
+      required_error: "venueId is required",
+      invalid_type_error: "venueId must be a string",
+    })
+    .uuid("venueId must be a valid UUID"),
 });

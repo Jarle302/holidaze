@@ -4,7 +4,7 @@ export default function configureFetch(method: string, reqBody: {} = {}) {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
+    credentials: "include" as RequestCredentials,
     ...(Object.keys(reqBody)?.length > 0
       ? { body: JSON.stringify(reqBody) }
       : {}),

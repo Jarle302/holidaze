@@ -1,12 +1,15 @@
 "use client";
 
 import formDataToObject from "../formDataToObject";
-
-const base = process.env.NEXT_PUBLIC_BASE_URL;
+import createProxyUrl from "./createProxyUrl";
+import configureFetch from "../configureFetch";
+import {createBookingSchema} from "@/app/ui/constants/validationSchemas"
 
 const endpoint = "holidaze/bookings";
-const url = base + "/auth" + "?endpoint=" + endpoint;
-export default async function bookVenueAction(formData: FormData) {
+
+const url = createProxyUrl(endpoint);
+
+export default async function bookVenueAction(state:any,formData: FormData) {
   const temp = formDataToObject(formData);
   const dateFrom = new Date(String(temp.dateFrom));
   const dateTo = new Date(String(temp.dateTo));
@@ -26,16 +29,17 @@ export default async function bookVenueAction(formData: FormData) {
   };
   console.log(requestBody, "this is the req b");
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
+  if(!createBookingSchema.safeParse(requestBody).success){
+    return createBookingSchema.safeParse(requestBody).error?.issues
+  }
 
-      body: JSON.stringify(requestBody),
-    });
+
+  const options: RequestInit = configureFetch("POST", requestBody);
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error();
+    }
     const data = await response.json();
     return data;
   } catch (error) {

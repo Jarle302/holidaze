@@ -6,6 +6,10 @@ import { FloatingLabelInput } from "@/app/ui/components/FloatingLabelInput";
 import bookVenueAction from "@/app/ui/utils/api/bookVenue";
 import { useFormState } from "react-dom";
 import { useRef } from "react";
+import { FormButton } from "@/app/ui/components/FormButton";
+import { ValidatedErrorMsg } from "@/app/ui/components/ValidatedErrorMsg";
+import { ZodIssue } from "zod";
+import { PleaseLogin } from "@/app/ui/components/PleaseLogin";
 
 export const VenueBooker = ({
   bookings,
@@ -13,7 +17,7 @@ export const VenueBooker = ({
 }: { bookings: Booking[] } & { id: string }) => {
   const formObject = useRef<HTMLFormElement>(null);
   const [fromTo, setFromTo] = useState(["", ""]);
-
+  const [state, action] = useFormState(bookVenueAction, null);
   console.log({ bookings });
   return (
     <div className="flex flex-col sm:flex-row max-w-[500px] ">
@@ -24,36 +28,39 @@ export const VenueBooker = ({
           bookings={bookings}
         />
       </div>
+
+      <PleaseLogin message="Please log in to book a venue">
       <form
+        action={action}
         ref={formObject}
         className=" flex flex-col sm:w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
         <FloatingLabelInput type={"number"} name="guests" />
+        <ValidatedErrorMsg inputName="guests" errorArray={state as []} />
+
         <FloatingLabelInput
           readonly={true}
           label="from"
           name="dateFrom"
           value={fromTo[0]}
         />
+        <ValidatedErrorMsg inputName="dateFrom" errorArray={state as []} />
         <FloatingLabelInput
           readonly={true}
           label="to"
           name="dateTo"
           value={fromTo[1]}
         />
+        <ValidatedErrorMsg inputName="dateTo" errorArray={state as []} />
+
         <input readOnly={true} type="hidden" name="venueId" value={id} />
-        <button
-          className="bg-red-300 font-bold p-3 rounded-lg"
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            const formData = new FormData(
-              formObject.current as HTMLFormElement
-            );
-            bookVenueAction(formData);
-          }}>
-          Book
-        </button>
+          <FormButton
+            defaultText="Book Venue"
+            loadingText="Booking Venue"
+            className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
+            loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
+          />
       </form>
+        </PleaseLogin>
     </div>
   );
 };

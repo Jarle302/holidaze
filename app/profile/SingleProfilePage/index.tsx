@@ -81,7 +81,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
   let cards;
   if (profile?.venueManager && venues && venues?.length > 0) {
     cards = venues?.map((venue: VenueWithAllParams) => (
-      <div key={venue.id} className="flex-col w-full">
+      <div key={venue.id} className="flex-col">
         <VenueCard isOwner={isOwnProfile} key={venue.name} {...venue} />
         {isOwnProfile && (
           <VenueBookings
@@ -99,25 +99,36 @@ export default function SingleProfilePage({ id }: { id: string }) {
     <main className="flex flex-col gap-4 max-w-[1300px] m-auto">
       <section className="flex flex-col">
         <ProfileInfo {...props} />
-        {isOwnProfile && (
-          <>
-            {" "}
-            <button onClick={() => modalRef.current?.showModal()}>
-              Change avatar
-            </button>
-            <dialog
-              ref={modalRef}
-              className="p-2 h-[300px] bg-zinc-300 rounded-lg border border-4 border-zinc-800">
-              <button onClick={() => modalRef.current?.close()}>Close</button>
+        <div className="p-8 flex gap-4">
+          {isOwnProfile && (
+            <>
+              {" "}
+              <button
+                className="p-2 bg-zinc-200 text-red-300 font-bold border border-bg-red-300 border-2 rounded-lg"
+                onClick={() => modalRef.current?.showModal()}>
+                Change avatar
+              </button>
+              <dialog
+                ref={modalRef}
+                className="p-2 h-[300px] bg-zinc-300 rounded-lg border border-4 border-zinc-800">
+                <button onClick={() => modalRef.current?.close()}>Close</button>
 
-              <AvatarUpdater
-                name={profile.name}
-                updateAvatar={action}
-                errorArray={state}
-              />
-            </dialog>
-          </>
-        )}
+                <AvatarUpdater
+                  name={profile.name}
+                  updateAvatar={action}
+                  errorArray={state}
+                />
+              </dialog>
+            </>
+          )}{" "}
+          {isOwnProfile && tempUser?.userInfo?.venueManager && (
+            <Link
+              className="p-3 bg-red-300 text-zinc-800 rounded-lg"
+              href="/venues/registerVenue">
+              Add new Venue
+            </Link>
+          )}{" "}
+        </div>
       </section>
       <section className="bg-zinc-300 p-8 ">
         <h2 className="font-bold text-2xl">Bio </h2>
@@ -129,13 +140,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
           )}
         </p>
       </section>
-      {isOwnProfile && tempUser?.userInfo?.venueManager && (
-        <Link
-          className="p-3 bg-red-300 text-zinc-800 rounded-lg"
-          href="/venues/registerVenue">
-          Add new Venue
-        </Link>
-      )}
+
       {profile.venueManager && (
         <section className="flex flex-wrap gap-4 w-full ">
           <h2 className="text-2xl font-bold text-red-300 w-full bg-zinc-1">
