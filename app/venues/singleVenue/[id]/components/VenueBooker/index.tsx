@@ -29,11 +29,10 @@ export const VenueBooker = ({
         />
       </div>
 
-      <PleaseLogin message="Please log in to book a venue">
       <form
         action={action}
         ref={formObject}
-        className=" flex flex-col sm:w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
+        className="relative flex flex-col sm:w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
         <FloatingLabelInput type={"number"} name="guests" />
         <ValidatedErrorMsg inputName="guests" errorArray={state as []} />
 
@@ -53,14 +52,14 @@ export const VenueBooker = ({
         <ValidatedErrorMsg inputName="dateTo" errorArray={state as []} />
 
         <input readOnly={true} type="hidden" name="venueId" value={id} />
-          <FormButton
-            defaultText="Book Venue"
-            loadingText="Booking Venue"
-            className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
-            loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
-          />
+        <FormButton
+          defaultText="Book Venue"
+          loadingText="Booking Venue"
+          className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
+          loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
+        />
+        <PleaseLogin message="Please log in to book a venue" />
       </form>
-        </PleaseLogin>
     </div>
   );
 };

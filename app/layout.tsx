@@ -18,7 +18,9 @@ export default function RootLayout({
       <body className={`${kadwa.className} bg--gradient`}>
         <UserInfoProvider>
           <Header />
-          {children}
+          <div className="flex justify-center max-w-[1300px] m-auto">
+            {children}
+          </div>
         </UserInfoProvider>
       </body>
     </html>
