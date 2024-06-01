@@ -32,7 +32,7 @@ export const LoginForm = () => {
   return (
     <form
       action={formAction}
-      className="w-[280px] sm:w-[400px] h-[220px] flex gap-4 justify-end p-4 flex-col text-white  bg-transparent lg:border-r-4 border-red-300">
+      className="w-[280px] sm:w-[400px] h-[220px] flex gap-4 justify-end  flex-col text-white  bg-transparent lg:border-r-4 border-red-300">
       <h1 className="text-2xl text-red-300 font-bold ">Login</h1>
       <AuthInput label="Email" name="email" />
       <ValidatedErrorMsg errorArray={state as ZodIssue[]} inputName="email" />
