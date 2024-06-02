@@ -10,10 +10,15 @@ import { useContext } from "react";
 import { userInfoContext } from "../UseInfoProvider";
 import { useEffect } from "react";
 import { UserInfo } from "../../constants/types";
+import useToast from "../../utils/customHooks/useToast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 export const LoginForm = () => {
   const [state, formAction] = useFormState(loginAction, null);
   const router = useRouter();
-
+  useToast(state);
   const user = useContext(userInfoContext);
   useEffect(() => {
     console.log("useeffect ran", user);
@@ -48,6 +53,7 @@ export const LoginForm = () => {
         className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
         loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
       />
+      <ToastContainer />
     </form>
   );
 };

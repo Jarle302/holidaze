@@ -4,12 +4,21 @@ import { FormButton } from "@/app/ui/components/FormButton";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 import registerAction from "../../utils/api/register";
 import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { ZodIssue } from "zod";
+import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
+import "react-toastify/dist/ReactToastify.css";
+import useToast from "../../utils/customHooks/useToast";
+
 export const RegisterForm = () => {
   const [state, formAction] = useFormState(registerAction, null);
+  const router = useRouter();
+  useToast(state, router, "/auth/login");
+
   return (
     <div className="bg-zinc-300  w-full items-center justify-center p-5">
+      <ToastContainer />
       <h1 className="text-slate-700 m-5 font-bold text-2xl">Register</h1>
       <form action={formAction} className="flex flex-col items-center">
         <div className="flex flex-wrap gap-4">

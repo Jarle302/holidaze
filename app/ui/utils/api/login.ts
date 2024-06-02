@@ -49,11 +49,10 @@ export default async function loginAction(state: any, formData: FormData) {
       body: JSON.stringify(formDataObject),
     });
 
-    if (!response.ok) {
-      throw new Error(`An error occurred: ${response.status}`);
-    }
-
     const data: LoginResponse = await response.json();
+    if (!response.ok) {
+      return data;
+    }
     const { accessToken: token, ...rest } = data?.data;
     cookies().set({
       name: "token",
@@ -68,7 +67,7 @@ export default async function loginAction(state: any, formData: FormData) {
       value: JSON.stringify({
         name: rest?.name,
         email: rest?.email,
-        isVenueManager: boolToYesNo(rest?.venueManager),
+        venueManager: boolToYesNo(rest?.venueManager) === "yes"?true:false,
         avatar: rest?.avatar,
         banner: rest?.banner,
       }),
@@ -76,6 +75,7 @@ export default async function loginAction(state: any, formData: FormData) {
       secure: true,
       path: "/",
     });
+    console.log({ rest });
     return rest;
   } catch (error) {
     console.log("this is the error", { error });

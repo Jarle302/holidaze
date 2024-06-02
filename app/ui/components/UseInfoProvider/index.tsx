@@ -5,9 +5,10 @@ import {
   ReactNode,
   SetStateAction,
   Dispatch,
+  useEffect,
 } from "react";
 import { UserInfo } from "@/app/ui/constants/types";
-
+import Cookies from "js-cookie";
 export const userInfoContext = createContext<
   | {
       userInfo: UserInfo;
@@ -24,6 +25,13 @@ export const UserInfoProvider = ({ children }: { children: ReactNode }) => {
     venueManager: false,
     bio: "",
   });
+  useEffect(() => {
+    if (document !== undefined) {
+      const userCookie = Cookies.get("user"); // => 'value'
+      console.log(userCookie);
+      if (typeof userCookie === "string") setUserInfo(JSON.parse(userCookie));
+    }
+  }, []);
   return (
     <userInfoContext.Provider value={{ userInfo, setUserInfo }}>
       {children}

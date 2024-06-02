@@ -16,11 +16,15 @@ import {
 } from "../../constants/validationSchemas";
 import { ZodIssue } from "zod";
 import { ValidatedErrorMsg } from "../ValidatedErrorMsg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 export const RegisterVenueForm = ({
   venueData,
 }: {
   venueData?: registerVenueData & { id: string };
 }) => {
+  const router = useRouter();
   let isEditMode = venueData?.name !== undefined ? true : false;
   let filledFormState = {};
   if (isEditMode) {
@@ -301,15 +305,26 @@ export const RegisterVenueForm = ({
             </button>
             <button
               className="p-2 w-[200px] rounded-lg bg-green-500 text-white"
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
                 if (isEditMode && venueData && venueData.id) {
-                  registerVenue(
+                  const data = await registerVenue(
                     convertFormStateToVenue(formState),
                     "PUT",
                     venueData.id
                   );
-                  return;
+                  if (data?.statusCode > 299) {
+                    toast.error(
+                      data?.errors
+                        .map((error: { message: string }) => error.message)
+                        .join(", ")
+                    );
+                  }
+                  if (data?.data && Object.keys(data?.data).length > 0) {
+                    toast("Success!");
+                    router.push("/");
+                    return;
+                  }
                 }
                 if (!RegisterVenueSchema.safeParse(formState).success) {
                   setValidationErrors(
@@ -317,13 +332,28 @@ export const RegisterVenueForm = ({
                   );
                   return;
                 }
-                registerVenue(convertFormStateToVenue(formState), "POST");
+                const data = await registerVenue(
+                  convertFormStateToVenue(formState),
+                  "POST"
+                );
+                if (data?.statusCode > 299) {
+                  toast.error(
+                    data?.errors
+                      .map((error: { message: string }) => error.message)
+                      .join(", ")
+                  );
+                }
+                if (data?.data && Object.keys(data?.data).length > 0) {
+                  toast("Success!");
+                  router.push("/");
+                }
               }}>
               {!isEditMode ? "Register Venue" : "Update Venue"}
             </button>
           </div>
         </div>
       )}
+      <ToastContainer />
     </form>
   );
 };
