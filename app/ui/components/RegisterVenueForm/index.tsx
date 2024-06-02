@@ -201,26 +201,28 @@ export const RegisterVenueForm = ({
               />
             </div>
           </div>
-          <button
-            className="p-2 rounded-lg bg-zinc-400 text-white"
-            onClick={(e) => {
-              e.preventDefault();
-              setFormPage((prev) =>
-                prev > 1 ? ((prev - 1) as formPage) : prev
-              );
-            }}>
-            Back
-          </button>
-          <button
-            className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg "
-            onClick={(e) => {
-              e.preventDefault();
-              setFormPage((prev) =>
-                prev < 3 ? ((prev + 1) as formPage) : prev
-              );
-            }}>
-            Next
-          </button>
+          <div className="flex flex-col">
+            <button
+              className="p-2 rounded-lg bg-zinc-400 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                setFormPage((prev) =>
+                  prev > 1 ? ((prev - 1) as formPage) : prev
+                );
+              }}>
+              Back
+            </button>
+            <button
+              className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg "
+              onClick={(e) => {
+                e.preventDefault();
+                setFormPage((prev) =>
+                  prev < 3 ? ((prev + 1) as formPage) : prev
+                );
+              }}>
+              Next
+            </button>
+          </div>
         </div>
       )}
       {formPage === 3 && (
@@ -292,7 +294,7 @@ export const RegisterVenueForm = ({
             />
             <ValidatedErrorMsg errorArray={validationErrors} inputName="lng" />
           </div>
-          <div className="flex">
+          <div className="flex flex-col">
             <button
               className="p-2 w-[200px] rounded-lg bg-zinc-400 text-white"
               onClick={(e) => {

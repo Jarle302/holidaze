@@ -158,7 +158,13 @@ export default function SingleProfilePage({ id }: { id: string }) {
           </h2>{" "}
           {bookings &&
             bookings.map((booking) => {
-              return <UserBooking key={booking.id} {...booking} />;
+              return (
+                <UserBooking
+                  key={booking.id}
+                  venueId={booking.venue.id}
+                  {...booking}
+                />
+              );
             })}
         </section>
       )}

@@ -8,10 +8,6 @@ export const VenueDetails = ({
 }: {
   venue: Venue & { owner: Owner; bookings: Booking[] };
 }) => {
-  if (!venue || Object.keys(venue).length === 0) {
-    throw new Error("404, venue not found");
-  }
-
   const { maxGuests, price } = venue || "";
   const { country, city } = venue?.location || "";
   const { wifi, parking, pets, breakfast } = venue?.meta || "";
@@ -35,10 +31,10 @@ export const VenueDetails = ({
         {boolToYesNo(parking)}
       </CustomLi>
       <Link
-        href={`/profile/${venue.owner.name}`}
+        href={`/profile/${venue?.owner?.name}`}
         className="flex justify-between px-2 relative">
         Host{" "}
-        <span className="text-slate-700 font-bold">{venue.owner.name}</span>
+        <span className="text-slate-700 font-bold">{venue?.owner?.name}</span>
         <PleaseLogin message="Log in to view managers profile" />
       </Link>
     </ul>

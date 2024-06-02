@@ -7,8 +7,8 @@ export const UserBooking = ({
   guests,
   updated,
   venue,
-  id,
-}: BookingWithVenue) => {
+  venueId,
+}: BookingWithVenue & { venueId: string }) => {
   return (
     <div className="flex justify-between bg-zinc-200 rounded-md max-w-[800px]">
       <div className="h-[120px] w-[120px] rounded-lg">
@@ -19,7 +19,7 @@ export const UserBooking = ({
         />
       </div>
       <div>
-        <Link href={`/venues/singleVenue/${id}`}>
+        <Link href={`/venues/singleVenue/${venueId}`}>
           <h3 className="text-2xl font-bold">{venue.name}</h3>
         </Link>
         <p>{venue.location?.city}</p>
