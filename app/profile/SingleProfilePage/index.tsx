@@ -110,7 +110,7 @@ export default function SingleProfilePage({ id }: { id: string }) {
               </button>
               <dialog
                 ref={modalRef}
-                className="p-2 h-[300px] bg-zinc-300 rounded-lg border border-4 border-zinc-800">
+                className="p-2 h-[300px] bg-slate-700 text--green rounded-lg border border-4 border-zinc-800">
                 <button onClick={() => modalRef.current?.close()}>Close</button>
 
                 <AvatarUpdater
