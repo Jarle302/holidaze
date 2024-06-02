@@ -14,7 +14,10 @@ export const CustomLi = ({
   return (
     children && (
       <li className={"flex px-2 justify-between " + (isOdd && altBackground)}>
-        <span>{category}</span> <span className="font-bold">{children}</span>
+        <span className="max-w-[100px]">{category}</span>{" "}
+        <span className="max-w-[200px] overflow-hidden font-bold">
+          {children}
+        </span>
       </li>
     )
   );
