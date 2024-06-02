@@ -51,6 +51,14 @@ export default function SingleProfilePage({ id }: { id: string }) {
   const [profile, setProfile] = useState<Profile>(emptyProfile);
   const [venues, setVenues] = useState<VenueWithAllParams[]>();
   const [bookings, setBookings] = useState<BookingWithVenue[]>();
+
+  useEffect(() => {
+    if (state?.data?.name) {
+      setProfile(state.data);
+      modalRef.current?.close()
+    }
+  }, [state]);
+
   useEffect(() => {
     (async function fetchMany() {
       const [profileData, venueData, bookingData] = await Promise.all([
