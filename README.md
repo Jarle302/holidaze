@@ -1,36 +1,89 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Holidaze
+
+Welcome to the Holidaze website! This project was created as my final semester project at Noroff, where I studied Front-End Development. The goal of this project is to implement a comprehensive platform for managing and booking venues. Users can search for venues, view detailed information, manage bookings, update profiles, and more. This README will guide you through the functionality, technologies used, and setup of the application.
+## Technologies Used
+
+- [Next.js](https://nextjs.org/): A React framework for building server-rendered React applications.
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that enhances code quality and development experience.
+- [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for building custom designs quickly.
+- [Zod](https://github.com/colinhacks/zod): A TypeScript-first schema declaration and validation library for validating form data.
+
+
+## Features
+### User Authentication
+
+- Users with a `stud.noroff.no` email can register as customers.
+- Users can create accounts and log in securely to the Holidaze platform.
+- Authentication ensures that only registered users can perform certain actions, such as creating bookings and managing venues.
+
+### Venue Browsing and Searching
+
+- Users can view a list of available venues.
+- Users can search for specific venues.
+- Users can view a details page for specific venues.
+
+### Venue Availability
+
+- Users can view a calendar displaying available dates for each venue.
+
+### Customer Features
+
+- Registered customers can create bookings at venues.
+- Registered customers can view their upcoming bookings.
+
+### Venue Manager Features
+
+- Users with a `stud.noroff.no` email can register as venue managers.
+- Registered venue managers can create new venues.
+- Venue managers can update the details of venues they manage.
+- Venue managers can delete venues they manage.
+- Venue managers can view bookings for the venues they manage.
+
+### User Profiles and Account Management
+
+- Registered users can update their avatars.
+- Users can securely log out of their accounts.
+
+
+
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up and run the holidaze website on your local machine:
+
+1. **Clone the Repository and install dependencies**
+
+   ```bash
+   git clone  https://github.com/Jarle302/holidaze/
+   cd holidaze
+   npm i
+   ```
+  
+
+
+
+2. **Set Up Environment Variables:**
+Create a .env file in the root directory and configure your environment variables, including the Noroff API key.
+
+```bash
+env
+APIKEY: for the noroff api key
+NEXT_PUBLIC_BASE_URL: the sites url, should be set to http://localhost:3000 when developing locally
+```
+
+
+3. **Start the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+The application should now be running locally on http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Access the Website:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open your web browser and navigate to http://localhost:3000 to use the Holidaze website.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
