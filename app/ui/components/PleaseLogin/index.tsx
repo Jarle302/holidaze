@@ -17,16 +17,16 @@ export const PleaseLogin = ({ message }: { message: string }) => {
     <>
       {!isLoggedIn && (
         <div className="w-full h-full absolute p-3 backdrop-blur-sm top-0 z-[2000] flex justify-center items-center rounded-lg ">
-          <div className=" p-3 flex flex-col justify-evenly  backdrop-blur-xl font-bold text-zinc-800">
+          <div className=" p-3 flex flex-col justify-evenly  backdrop-blur-xl font-bold text--green">
             <p>{message}</p>
             <Link
-              className="text-xl font-bold text-slate-700"
+              className="text-xl font-bold text-red-300"
               href={"/auth/login"}>
               Login
             </Link>
             <span>OR</span>
             <Link
-              className="text-xl font-bold text-slate-700"
+              className="text-xl font-bold text-red-300"
               href={"/auth/register"}>
               Register
             </Link>
