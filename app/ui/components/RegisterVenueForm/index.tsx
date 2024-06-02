@@ -36,7 +36,6 @@ export const RegisterVenueForm = ({
     isEditMode ? (filledFormState as FormState) : emptyFormStateObject
   );
 
-
   function handleClick() {
     setFormState((prev) => ({
       ...prev,
@@ -58,7 +57,7 @@ export const RegisterVenueForm = ({
   const containerStyle = "flex flex-col gap-3";
 
   return (
-    <form className="bg-slate-700 text--green min-h-[100vh] items-center flex flex-col gap-4">
+    <form className="bg-slate-700 text--green min-h-[100vh] mt-5 items-center flex flex-col gap-4">
       <h1 className="text-3xl text-red-300 font-bold">
         {!isEditMode ? "Register Venue" : "Update Venue"}
       </h1>

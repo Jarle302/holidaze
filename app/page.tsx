@@ -3,7 +3,7 @@ import { Search } from "./ui/components/Search";
 import { VenueCard } from "./ui/components/VenueCard";
 export default function Venues() {
   return (
-    <main className="flex flex-wrap gap-4 justify-center sm:justify-start">
+    <main className="flex flex-wrap gap-4 justify-start sm:justify-start">
       <h1 className="text-slate-600   text-[50px] md:text-[100px] font-bold w-full">
         Holidaze
       </h1>
