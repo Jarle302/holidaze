@@ -75,15 +75,20 @@ export const VenueCard = ({
                 </button>
               )}
               {isOwner && (
-                <div>
+                <div className="flex gap-2">
                   <button
+                    className="bg-zinc-800 text-zinc-100 p-1 rounded-lg"
                     onClick={async () => {
                       deleteVenue(id);
                       setOptimisticDeleted(true);
                     }}>
                     Delete
                   </button>
-                  <Link href={`/venues/singleVenue/update/${id}`}>Update</Link>
+                  <Link
+                    className="bg-zinc-800 text-zinc-100 p-1 rounded-lg"
+                    href={`/venues/singleVenue/update/${id}`}>
+                    Update
+                  </Link>
                 </div>
               )}
             </>
