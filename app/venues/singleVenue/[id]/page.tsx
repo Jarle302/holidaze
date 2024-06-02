@@ -4,13 +4,18 @@ import { Carousel } from "@/app/ui/components/Carousel";
 import { VenueDetails } from "./components/VenueDetails";
 import { VenueBooker } from "./components/VenueBooker";
 import { UseClientVenueBookings } from "./components/UseClientVenueBookings";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Holidaze | Venue",
+  description:
+    "Explore this unique venue on Holidaze. Discover its features, reviews, and availability. Book your next unforgettable holiday experience today.",
+};
 export default async function Page({ params }: { params: { id: string } }) {
   const data: { data: Venue & { owner: Owner; bookings: Booking[] } } =
     await fetch(
       `${baseUrl}holidaze/venues/${params.id}?_owner=true&_bookings=true`,
       { cache: "no-store" }
     ).then((res) => res.json());
-
 
   const { name, description, media, bookings, owner } = data.data || "";
 
