@@ -10,6 +10,9 @@ import { FormButton } from "@/app/ui/components/FormButton";
 import { ValidatedErrorMsg } from "@/app/ui/components/ValidatedErrorMsg";
 import { ZodIssue } from "zod";
 import { PleaseLogin } from "@/app/ui/components/PleaseLogin";
+import useToast from "@/app/ui/utils/customHooks/useToast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const VenueBooker = ({
   bookings,
@@ -18,7 +21,7 @@ export const VenueBooker = ({
   const formObject = useRef<HTMLFormElement>(null);
   const [fromTo, setFromTo] = useState(["", ""]);
   const [state, action] = useFormState(bookVenueAction, null);
-  console.log({ bookings });
+  useToast(state)
   return (
     <div className="flex flex-col sm:flex-row max-w-[500px] ">
       <div className="sm:w-3/5">
@@ -60,6 +63,7 @@ export const VenueBooker = ({
         />
         <PleaseLogin message="Please log in to book a venue" />
       </form>
+      <ToastContainer />
     </div>
   );
 };

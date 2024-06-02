@@ -14,8 +14,8 @@ export const UserBooking = ({
       <div className="h-[120px] w-[120px] rounded-lg">
         <img
           className="w-full h-full object-cover rounded-lg"
-          src={venue.media[0].url}
-          alt={venue.media[0].alt}
+          src={venue?.media[0]?.url || "/stampLogo.webp"}
+          alt={venue?.media[0]?.alt || "Missing image description"}
         />
       </div>
       <div>
@@ -29,7 +29,6 @@ export const UserBooking = ({
         <p className="font-bold">{dateTo.split("T")[0]}</p>
         <p className="font-bold">{dateFrom.split("T")[0]}</p>
       </div>
-      <button className="p-3 bg-red-300">Edit</button>
     </div>
   );
 };
