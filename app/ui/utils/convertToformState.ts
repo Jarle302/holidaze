@@ -7,19 +7,19 @@ export default function convertToformState(
   const { location, meta, ...rest } = venuedata;
   const editableFormData = {
     ...rest,
-    url: venuedata.media[0].url,
-    alt: venuedata.media[0].alt,
-    parking: venuedata.meta.parking,
-    wifi: meta.wifi,
-    breakfast: meta.breakfast,
-    pets: meta.pets,
-    address: location.address,
-    country: location.country,
-    city: location.city,
-    continent: location.continent,
-    zip: location.zip,
-    lat: location.lat,
-    lng: location.lng,
+    url: venuedata?.media[0]?.url,
+    alt: venuedata?.media[0]?.alt,
+    parking: venuedata?.meta?.parking,
+    wifi: meta?.wifi,
+    breakfast: meta?.breakfast,
+    pets: meta?.pets,
+    address: location?.address,
+    country: location?.country,
+    city: location?.city,
+    continent: location?.continent,
+    zip: location?.zip,
+    lat: location?.lat,
+    lng: location?.lng,
   };
 
   return editableFormData;
