@@ -59,7 +59,7 @@ export const RegisterVenueForm = ({
   const containerStyle = "flex flex-col gap-3";
 
   return (
-    <form className="bg-zinc-300 min-h-[100vh] items-center flex flex-col gap-4">
+    <form className="bg-slate-700 text--green min-h-[100vh] items-center flex flex-col gap-4">
       <h1 className="text-3xl text-red-300 font-bold">
         {!isEditMode ? "Register Venue" : "Update Venue"}
       </h1>
@@ -114,7 +114,7 @@ export const RegisterVenueForm = ({
           />
 
           <button
-            className="p-2 rounded-lg bg-red-300"
+            className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
             onClick={(e) => {
               e.preventDefault();
               setFormPage((prev) =>
@@ -148,7 +148,7 @@ export const RegisterVenueForm = ({
                 }
                 handleClick();
               }}
-              className="bg-zinc-500 text-white  p-2 rounded-lg">
+              className="p-2 bg-zinc-800 text-zinc-100 font-bold rounded-lg">
               Add
             </button>
           </div>
@@ -212,7 +212,7 @@ export const RegisterVenueForm = ({
             Back
           </button>
           <button
-            className="p-2 rounded-lg bg-red-300 "
+            className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg "
             onClick={(e) => {
               e.preventDefault();
               setFormPage((prev) =>

@@ -21,7 +21,7 @@ export const VenueBooker = ({
   const formObject = useRef<HTMLFormElement>(null);
   const [fromTo, setFromTo] = useState(["", ""]);
   const [state, action] = useFormState(bookVenueAction, null);
-  useToast(state)
+  useToast(state);
   return (
     <div className="flex flex-col sm:flex-row max-w-[500px] ">
       <div className="sm:w-3/5">
@@ -35,7 +35,7 @@ export const VenueBooker = ({
       <form
         action={action}
         ref={formObject}
-        className="relative flex flex-col sm:w-2/5 justify-evenly bg-zinc-300 rounded-r-lg p-3 box-content">
+        className="relative flex flex-col sm:w-2/5 justify-evenly bg-slate-700 text--green rounded-r-lg p-3 box-content">
         <FloatingLabelInput type={"number"} name="guests" />
         <ValidatedErrorMsg inputName="guests" errorArray={state as []} />
 

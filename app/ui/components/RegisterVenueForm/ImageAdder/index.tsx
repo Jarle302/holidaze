@@ -26,7 +26,7 @@ export const ImageAdder = ({ state, setState }: ImageAdderProps) => {
       }));
     }
   }, [imageIndex]);
-  const buttonClasses = "self-center p-1 rounded-full bg-zinc-300";
+  const buttonClasses = "self-center p-1 rounded-full bg-white";
 
   function handleClick() {
     setState((prev: FormState) => ({
@@ -72,7 +72,7 @@ export const ImageAdder = ({ state, setState }: ImageAdderProps) => {
             src={state.media[imageIndex]?.url}
             alt={state.media[imageIndex]?.alt}
           />
-          <div className="absolute p-3 bg-zinc-300 w-full flex gap-1 top-[68%]">
+          <div className="absolute p-3 bg-slate-700 text--green w-full flex gap-1 top-[68%]">
             <FloatingLabelInput
               name="alt"
               label="Description"
@@ -85,8 +85,8 @@ export const ImageAdder = ({ state, setState }: ImageAdderProps) => {
                 e.preventDefault();
                 handleClick();
               }}
-              className="bg-zinc-500 text-white z-30  p-2 rounded-lg">
-              add
+              className="p-2 bg-zinc-800 text-zinc-100 font-bold rounded-lg">
+              Add
             </button>
           </div>{" "}
         </div>

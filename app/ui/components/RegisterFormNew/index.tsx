@@ -17,9 +17,9 @@ export const RegisterForm = () => {
   useToast(state, router, "/auth/login");
 
   return (
-    <div className="bg-zinc-300  w-full items-center justify-center p-5">
+    <div className="bg-slate-700 my-5 text--green  w-full items-center justify-center p-5">
       <ToastContainer />
-      <h1 className="text-slate-700 m-5 font-bold text-2xl">Register</h1>
+      <h1 className="text-red-300 m-5 font-bold text-2xl">Register</h1>
       <form action={formAction} className="flex flex-col items-center">
         <div className="flex flex-wrap gap-4">
           <div className="flex flex-col gap-4">

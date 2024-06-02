@@ -42,7 +42,7 @@ export const FloatingLabelInput = ({
         <textarea
           readOnly={readonly}
           onChange={handleChange && handleChange}
-          className="outline-none py-3 h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
+          className="outline-none py-3 h-full w-full text--green bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg h-[100px] "
           name={name}
           id={id}
           cols={30}
@@ -51,7 +51,7 @@ export const FloatingLabelInput = ({
       ) : (
         <input
           onChange={handleChange && handleChange}
-          className="outline-none h-full w-full bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg "
+          className="outline-none h-full w-full text--green bg-transparent absolute z-10 border-2 border-zinc-500 rounded-lg "
           type={type ? type : "text"}
           name={name}
           id={id}
@@ -60,7 +60,7 @@ export const FloatingLabelInput = ({
         />
       )}
       <label
-        className="absolute z-20 bottom-[36px] bg-zinc-300 px-2 left-[17px] "
+        className="absolute text--green z-20 bottom-[36px] bg-slate-700 px-2 left-[17px] "
         htmlFor={id}>
         {label ? label : name}
       </label>

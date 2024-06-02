@@ -122,6 +122,7 @@ export const createBookingSchema = z.object({
   guests: z
     .number({
       invalid_type_error: "Guests must be a number",
+      required_error: "Guests are required",
     })
     .int("Guests must be an integer")
     .min(1, "Guests must be at least 1")
