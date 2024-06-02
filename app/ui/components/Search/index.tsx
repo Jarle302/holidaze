@@ -13,7 +13,6 @@ export const Search = ({
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [state, action] = useFormState(searchAction, null);
-  console.log(state);
   return (
     <search className={" w-full gap-4"}>
       <form className="flex flex-col mb-4" action={action}>

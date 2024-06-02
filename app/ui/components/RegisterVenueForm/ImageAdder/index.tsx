@@ -12,7 +12,6 @@ type ImageAdderProps = {
 
 export const ImageAdder = ({ state, setState }: ImageAdderProps) => {
   const [imageIndex, setImageIndex] = useState(0);
-  console.log(imageIndex);
   useEffect(() => {
     if (state.media[imageIndex]?.alt) {
       setState((prev: FormState) => ({

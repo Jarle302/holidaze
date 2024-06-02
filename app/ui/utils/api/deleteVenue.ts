@@ -6,6 +6,5 @@ export default async function deleteVenue(id: string) {
   const url = createProxyUrl(`holidaze/venues/${id}`);
   const response = await fetch(url, options as RequestInit);
   const data = await response.json();
-  console.log(data);
   return data;
 }

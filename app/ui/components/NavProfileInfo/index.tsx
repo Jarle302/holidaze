@@ -11,7 +11,6 @@ import { FaUser } from "react-icons/fa6";
 export const NavProfileInfo = () => {
   const path = usePathname();
   const user = useContext(userInfoContext);
-  console.log({ user });
   return (
     <nav>
       <ul className="flex gap-4">

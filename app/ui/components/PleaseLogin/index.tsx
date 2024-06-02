@@ -8,7 +8,6 @@ export const PleaseLogin = ({ message }: { message: string }) => {
 
   useEffect(() => {
     if (user?.userInfo?.name) {
-      console.log({ user });
       setIsLoggedIn(true);
     }
   }, [user]);

@@ -12,13 +12,16 @@ export default async function UpdateAvatarAction(
   if (!UpdateAvatarZod.safeParse(temp).success) {
     return UpdateAvatarZod.safeParse(temp).error?.issues;
   }
-  console.log({ temp });
   const { name, ...rest } = temp;
   const reqBody = { avatar: { url: rest.url, alt: rest.alt } };
   const url = createProxyUrl(`holidaze/profiles/${name}`);
-  const body: any /*fix type*/ = configureFetch("PUT", reqBody);
-  const response = await fetch(url, body);
-  const data = await response.json();
-  console.log(data);
-  return data;
+  const body: RequestInit = configureFetch("PUT", reqBody);
+  try {
+    const response = await fetch(url, body);
+    const data = await response.json();
+
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 }

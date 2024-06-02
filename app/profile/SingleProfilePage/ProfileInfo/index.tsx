@@ -16,7 +16,6 @@ export const ProfileInfo = (props: Profile & { rating: number }) => {
     bannerUrl = "";
   }
 
-  console.log({ props });
   const fallBackBannerAltText = !props?.banner?.url
     ? "blue sky with clouds"
     : "banner picture with no alt text supplied";

@@ -9,6 +9,5 @@ export default async function SingleProfile({
 
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
   return <SingleProfilePage id={params.id} />;
 }

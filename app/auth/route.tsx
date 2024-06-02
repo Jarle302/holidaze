@@ -8,11 +8,9 @@ export async function GET(request: NextRequest) {
     throw new Error("Missing API KEY!");
   }
   const token = request.cookies.get("token")?.value;
-  console.log("this is the token", { token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
-    console.log(requestBody, "this is the bod");
   }
   const searchParams = request.nextUrl.searchParams;
   const url = baseUrl + searchParams.get("endpoint");
@@ -48,11 +46,8 @@ export async function POST(request: NextRequest) {
     throw new Error("Missing API KEY!");
   }
 
-  console.log("HEADERS", request.headers, "HEADERS");
-
   //const token = request.headers.get("token");
   const token = request.cookies.get("token")?.value;
-  console.log("this is the token", { token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
@@ -72,7 +67,6 @@ export async function POST(request: NextRequest) {
   try {
     const response = await fetch(url, fetchOptions);
     const data = await response.json();
-    console.log(data);
     return new Response(JSON.stringify(data), {
       status: 200,
 
@@ -94,7 +88,6 @@ export async function DELETE(request: NextRequest) {
     throw new Error("Missing API KEY!");
   }
   const token = request.cookies.get("token")?.value;
-  console.log("this is the token", { token });
 
   const searchParams = request.nextUrl.searchParams;
   const url = baseUrl + searchParams.get("endpoint");
@@ -127,11 +120,8 @@ export async function PUT(request: NextRequest) {
     throw new Error("Missing API KEY!");
   }
 
-  console.log("HEADERS", request.headers, "HEADERS");
-
   //const token = request.headers.get("token");
   const token = request.cookies.get("token")?.value;
-  console.log("this is the token", { token });
   let requestBody = {};
   if (request.headers.get("content-type")?.includes("application/json")) {
     requestBody = await request.json();
@@ -151,7 +141,6 @@ export async function PUT(request: NextRequest) {
   try {
     const response = await fetch(url, fetchOptions);
     const data = await response.json();
-    console.log(data);
     return new Response(JSON.stringify(data), {
       status: 200,
 

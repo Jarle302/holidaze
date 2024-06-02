@@ -21,19 +21,15 @@ export const LoginForm = () => {
   useToast(state);
   const user = useContext(userInfoContext);
   useEffect(() => {
-    console.log("useeffect ran", user);
     if (user !== undefined) {
       const { userInfo, setUserInfo } = user;
-      console.log("user is not undefind", state);
       if (state && "name" in state) {
-        console.log("there is name in state", state);
         setUserInfo(state as UserInfo);
         router.push("/");
       }
     }
   }, [state]);
 
-  console.log(state);
   return (
     <form
       action={formAction}

@@ -75,7 +75,6 @@ export default async function loginAction(state: any, formData: FormData) {
       secure: true,
       path: "/",
     });
-    console.log({ rest });
     return rest;
   } catch (error) {
     console.log("this is the error", { error });

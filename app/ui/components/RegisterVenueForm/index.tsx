@@ -36,7 +36,6 @@ export const RegisterVenueForm = ({
     isEditMode ? (filledFormState as FormState) : emptyFormStateObject
   );
 
-  console.log(validationErrors);
 
   function handleClick() {
     setFormState((prev) => ({

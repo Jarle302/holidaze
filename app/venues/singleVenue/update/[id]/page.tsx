@@ -7,6 +7,5 @@ export default async function UpdateVenue({
 }) {
   const response = await fetch(`${baseUrl}holidaze/venues/${params.id}`);
   const data = await response.json();
-  console.log({ data });
   return <RegisterVenueForm venueData={data.data} />;
 }

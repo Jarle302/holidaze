@@ -28,10 +28,9 @@ export default async function registerAction(state: any, formData: FormData) {
       body: JSON.stringify(rest),
     });
     const data = await response.json();
-    console.log(rest);
-    console.log(data, "this is the log");
-    return data
+
+    return data;
   } catch (e) {
-    return console.log(e);
+    console.log(e);
   }
 }

@@ -85,7 +85,7 @@ export const VenueCard = ({
             <BookingCalendar bookings={bookings} />
           </div>
           <button
-            className={buttonStyle}
+            className={buttonStyle + " counter-flip"}
             onClick={() => {
               setShowCalendar((prev) => !prev);
               tl.current?.reverse();

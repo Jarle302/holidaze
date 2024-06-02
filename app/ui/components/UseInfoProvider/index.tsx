@@ -28,7 +28,6 @@ export const UserInfoProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (document !== undefined) {
       const userCookie = Cookies.get("user"); // => 'value'
-      console.log(userCookie);
       if (typeof userCookie === "string") setUserInfo(JSON.parse(userCookie));
     }
   }, []);

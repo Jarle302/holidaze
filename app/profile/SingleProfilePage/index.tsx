@@ -66,7 +66,6 @@ export default function SingleProfilePage({ id }: { id: string }) {
       setProfile(data1.data);
       setVenues(data2.data);
       setBookings(data3.data);
-      console.log({ data1 }, { data2 }, { data3 });
     })();
   }, []);
   useEffect(() => {
@@ -75,7 +74,6 @@ export default function SingleProfilePage({ id }: { id: string }) {
       user = tempUser;
 
       user?.userInfo.name === profile.name && setIsOwnProfile(true);
-      console.log(isOwnProfile, "isOWN PROFILE????");
     }
   }, [profile]);
   let cards;

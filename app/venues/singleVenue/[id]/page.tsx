@@ -11,7 +11,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       { cache: "no-store" }
     ).then((res) => res.json());
 
-  console.log("det e denne eg trenge", { data });
 
   const { name, description, media, bookings, owner } = data.data || "";
 

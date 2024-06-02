@@ -7,7 +7,6 @@ export default async function LogOut() {
      cookieStore.delete("token");
     cookies().delete("user");
     cookies().delete("token");
-    console.log("deleting cookies");
 
 } catch (error) {
     console.log(error);

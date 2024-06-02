@@ -13,7 +13,6 @@ export const Carousel = ({
   fitToContainer?: boolean;
 }) => {
   const [imageIndex, setImageIndex] = useState(0);
-  console.log("from button", media);
   const buttonClasses = "self-center p-1 rounded-full bg-white";
 
   if (media?.length === 0 || !Array.isArray(media)) {
