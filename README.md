@@ -3,6 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 # Holidaze
 
 Welcome to the Holidaze website! This project was created as my final semester project at Noroff, where I studied Front-End Development. The goal of this project is to implement a comprehensive platform for managing and booking venues. Users can search for venues, view detailed information, manage bookings, update profiles, and more. This README will guide you through the functionality, technologies used, and setup of the application.
+
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/): A React framework for building server-rendered React applications.
@@ -11,8 +12,8 @@ Welcome to the Holidaze website! This project was created as my final semester p
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for building custom designs quickly.
 - [Zod](https://github.com/colinhacks/zod): A TypeScript-first schema declaration and validation library for validating form data.
 
-
 ## Features
+
 ### User Authentication
 
 - Users with a `stud.noroff.no` email can register as customers.
@@ -47,20 +48,17 @@ Welcome to the Holidaze website! This project was created as my final semester p
 - Registered users can update their avatars.
 - Users can securely log out of their accounts.
 
-
-
 ## Getting Started
 
-Follow these steps to set up and run the holidaze website on your local machine:
+Follow these steps to set up and run the Holidaze website on your local machine:
 
-1. **Clone the Repository and install dependencies**
+### Clone the Repository and Install Dependencies
 
-   ```bash
-   git clone  https://github.com/Jarle302/holidaze/
-   cd holidaze
-   npm i
-   ```
-  
+```bash
+git clone https://github.com/Jarle302/holidaze/
+cd holidaze
+npm i
+
 
 
 
@@ -69,8 +67,9 @@ Create a .env file in the root directory and configure your environment variable
 
 ```bash
 env
-APIKEY: for the noroff api key
-NEXT_PUBLIC_BASE_URL: the sites url, should be set to http://localhost:3000 when developing locally
+APIKEY=your_noroff_api_key
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
 ```
 
 
