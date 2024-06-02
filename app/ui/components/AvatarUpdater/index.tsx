@@ -15,7 +15,7 @@ export const AvatarUpdater = ({
   return (
     <form
       action={updateAvatar}
-      className="bg-zinc-300 flex flex-col justify-evenly h-full">
+      className="bg-slate-700 text--green flex flex-col justify-evenly h-full">
       <FloatingLabelInput name="url" label="Avatar url" />
       <ValidatedErrorMsg errorArray={errorArray} inputName="url" />
       <FloatingLabelInput name="alt" label="Avatar description" />
@@ -24,8 +24,8 @@ export const AvatarUpdater = ({
       <FormButton
         defaultText="Change avatar"
         loadingText="Changing avatar"
-        className="p-3 bg-red-300 font-bold text-zinc-800 rounded-lg"
-        loadingStyle="p-3 bg-zinc-200 font-bold text-zinc-800 rounded-lg"
+        className="p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg"
+        loadingStyle="p-3 bg-zinc-300 text-zinc-800 font-bold rounded-lg"
       />
     </form>
   );
