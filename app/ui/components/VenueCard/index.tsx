@@ -34,11 +34,12 @@ export const VenueCard = ({
   }); // <-- automatically reverted
 
   const [showCalendar, setShowCalendar] = useState(false);
-  const buttonStyle = "py-2 w-full bg-zinc-200 text-zinc-800 font-bold";
+  const buttonStyle =
+    "py-2 w-full p-3 bg-zinc-800 text-zinc-100 font-bold rounded-lg";
   return (
     <div
       ref={card}
-      className={`w-[300px] bg-white p-2 h-[380px] flex flex-col justify-between overflow-hidden ${courier.className}`}>
+      className={`w-[300px] bg-slate-700 text--green p-2 h-[380px] flex flex-col rounded-md justify-between overflow-hidden ${courier.className}`}>
       {!showCalendar && (
         <>
           <Link href={`/venues/singleVenue/${id}`}>
@@ -80,7 +81,7 @@ export const VenueCard = ({
       )}
       {showCalendar && typeof bookings !== "undefined" && (
         <>
-          <div className="counter-flip">
+          <div className="counter-flip text-zinc-800">
             <BookingCalendar bookings={bookings} />
           </div>
           <button
