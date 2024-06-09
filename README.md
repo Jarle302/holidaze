@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Holidaze
 
+![image](https://github.com/Jarle302/portofolio2/blob/main/public/holidaze.jpg)
+
 Welcome to the Holidaze website! This project was created as my final semester project at Noroff, where I studied Front-End Development. The goal of this project is to implement a comprehensive platform for managing and booking venues. Users can search for venues, view detailed information, manage bookings, update profiles, and more. This README will guide you through the functionality, technologies used, and setup of the application.
 
 ## Technologies Used
